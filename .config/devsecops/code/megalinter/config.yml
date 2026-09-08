@@ -1,0 +1,49 @@
+# MegaLinter configuration
+APPLY_FIXES: all
+
+CSHARP_DOTNET_FORMAT_FILTER_REGEX_INCLUDE: "(project/Backend/BackendESP/.*\\.cs$)"
+CSHARP_DOTNET_FORMAT_ARGUMENTS: "project/Backend/BackendESP/BackendESP.sln --no-restore"
+CSHARP_CSHARPIER_FILTER_REGEX_INCLUDE: "(Unity/ABB/Assets/.*\\.cs$)"
+CSHARP_ROSLYNATOR_FILTER_REGEX_INCLUDE: "(Unity/ABB/Assets/.*\\.cs$)"
+REPOSITORY_GITLEAKS_ARGUMENTS: "--log-opts=HEAD~10..HEAD"
+
+# ─────────────────────────────────────────────────────────────────────────
+# Directories excluded from analysis
+# ─────────────────────────────────────────────────────────────────────────
+EXCLUDED_DIRECTORIES:
+  - .config
+  - node_modules
+  - .vscode
+  - megalinter-reports
+  - dev
+  - proc
+  - sys
+  - tmp
+  - var
+  - boot
+
+# ─────────────────────────────────────────────────────────────────────────
+# Active linters — whitelist, only these run
+# Do NOT combine with DISABLE_LINTERS (they are mutually exclusive)
+# ─────────────────────────────────────────────────────────────────────────
+ENABLE_LINTERS:
+  - YAML_YAMLLINT
+  - YAML_PRETTIER
+  - SPELL_CSPELL
+  - CSHARP_DOTNET_FORMAT
+  - CSHARP_CSHARPIER
+  - CSHARP_ROSLYNATOR
+  - REPOSITORY_GITLEAKS
+  - REPOSITORY_TRUFFLEHOG
+
+
+# ─────────────────────────────────────────────────────────────────────────
+# Linter config file paths
+# ─────────────────────────────────────────────────────────────────────────
+LINTER_RULES_PATH: .config/linters
+SPELL_CSPELL_CONFIG_FILE: .config/linters/cspell/.cspell.json
+CSHARP_CSHARPIER_CONFIG_FILE: .config/linters/csharpier/.csharpierrc.json
+CSHARP_ROSLYNATOR_CONFIG_FILE: .config/linters/roslynator/.roslynatorconfig
+YAML_YAMLLINT_CONFIG_FILE: .config/linters/yaml/.yamllint
+
+SHOW_ELAPSED_TIME: true

@@ -1,0 +1,692 @@
+<testsuites>
+  <testsuite name="BackendESP.IntegrationTests.dll" tests="20" skipped="0" failures="20" errors="0" time="0.02000000000000001" timestamp="2026-05-27T21:46:19" hostname="degameur" id="0" package="BackendESP.IntegrationTests.dll">
+    <properties />
+    <testcase classname="BackendESP.IntegrationTests.Players.PlayerApiTests" name="DeletePlayer_Returns200_WhenPlayerExists" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : POSTGRES_PASSWORD environment variable is required">at Program.&lt;Main&gt;$(String[] args) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Program.cs:line 41
+   at InvokeStub_Program.&lt;Main&gt;$(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+--- End of stack trace from previous location ---
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.CreateHost()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.&lt;&gt;c__DisplayClass10_0.&lt;ResolveHostFactory&gt;b__0(String[] args)
+   at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.Build()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs:line 16
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Robots.RobotApiTests" name="CreateRobot_Returns200_WhenNewRobot" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : POSTGRES_PASSWORD environment variable is required">at Program.&lt;Main&gt;$(String[] args) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Program.cs:line 41
+   at InvokeStub_Program.&lt;Main&gt;$(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+--- End of stack trace from previous location ---
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.CreateHost()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.&lt;&gt;c__DisplayClass10_0.&lt;ResolveHostFactory&gt;b__0(String[] args)
+   at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.Build()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs:line 16
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Controllers.RootEndpointTests" name="Get_Players_Returns_Success" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : POSTGRES_PASSWORD environment variable is required">at Program.&lt;Main&gt;$(String[] args) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Program.cs:line 41
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+--- End of stack trace from previous location ---
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.CreateHost()
+   at Microsoft.Extensions.Hosting.HostFactoryResolver.&lt;&gt;c__DisplayClass10_0.&lt;ResolveHostFactory&gt;b__0(String[] args)
+   at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.Build()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Controllers.RootEndpointTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Controllers/RootEndPointTest.cs:line 13
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Robots.RobotApiTests" name="GetAllRobots_Returns200_WithSeededRobot" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs:line 16
+   at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Controllers.RootEndpointTests" name="Get_Root_Returns_HelloWorld" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Controllers.RootEndpointTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Controllers/RootEndPointTest.cs:line 13
+   at InvokeStub_RootEndpointTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Players.PlayerApiTests" name="DeletePlayer_Returns404_WhenPlayerDoesNotExist" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs:line 16
+   at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Players.PlayerApiTests" name="GetPlayer_Returns200_WhenPlayerExists" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs:line 16
+   at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Robots.RobotApiTests" name="DeleteRobot_Returns404_WhenRobotDoesNotExist" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs:line 16
+   at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Robots.RobotApiTests" name="GetRobot_Returns200_WhenRobotExists" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs:line 16
+   at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Players.PlayerApiTests" name="CreatePlayer_Returns200_WhenValidPlayerProvided" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs:line 16
+   at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Robots.RobotApiTests" name="GetRobot_Returns404_WhenRobotDoesNotExist" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs:line 16
+   at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Players.PlayerApiTests" name="GetAllPlayers_Returns200_WithSeededPlayer" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs:line 16
+   at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Players.PlayerApiTests" name="CreatePlayer_Returns404_WhenUserNameIsNull" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs:line 16
+   at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Robots.RobotApiTests" name="UpdateRobot_Returns404_WhenRobotNotFound" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs:line 16
+   at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Robots.RobotApiTests" name="CreateRobot_Returns400_WhenRobotAlreadyExists" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs:line 16
+   at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Players.PlayerApiTests" name="UpdatePlayer_Returns400_WhenPlayerNotFound" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs:line 16
+   at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Robots.RobotApiTests" name="UpdateRobot_Returns200_WhenRobotExists" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs:line 16
+   at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Players.PlayerApiTests" name="UpdatePlayer_Returns200_WhenPlayerExists" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs:line 16
+   at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Players.PlayerApiTests" name="GetPlayer_Returns404_WhenPlayerDoesNotExist" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs:line 16
+   at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <testcase classname="BackendESP.IntegrationTests.Robots.RobotApiTests" name="DeleteRobot_Returns200_WhenRobotExists" time="0.0010000">
+      <failure type="failure" message="System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.">at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+   at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+   at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs:line 16
+   at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</failure>
+    </testcase>
+    <system-out>
+Test Framework Informational Messages:
+[xUnit.net 00:00:00.01] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 9.0.15)
+[xUnit.net 00:00:00.47]   Discovering: BackendESP.IntegrationTests
+[xUnit.net 00:00:00.63]   Discovered:  BackendESP.IntegrationTests
+[xUnit.net 00:00:00.71]   Starting:    BackendESP.IntegrationTests
+[xUnit.net 00:00:03.41]       System.InvalidOperationException : POSTGRES_PASSWORD environment variable is required
+[xUnit.net 00:00:03.41]       Stack Trace:
+[xUnit.net 00:00:03.41]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Program.cs(41,0): at Program.&lt;Main&gt;$(String[] args)
+[xUnit.net 00:00:03.42]            at InvokeStub_Program.&lt;Main&gt;$(Object, Span`1)
+[xUnit.net 00:00:03.42]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:03.42]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:03.42]            at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.CreateHost()
+[xUnit.net 00:00:03.42]            at Microsoft.Extensions.Hosting.HostFactoryResolver.&lt;&gt;c__DisplayClass10_0.&lt;ResolveHostFactory&gt;b__0(String[] args)
+[xUnit.net 00:00:03.42]            at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.Build()
+[xUnit.net 00:00:03.42]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+[xUnit.net 00:00:03.42]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:03.42]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:03.42]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.42]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.42]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:03.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:03.43]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs(16,0): at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:03.43]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+[xUnit.net 00:00:03.43]            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:03.44]       System.InvalidOperationException : POSTGRES_PASSWORD environment variable is required
+[xUnit.net 00:00:03.44]       Stack Trace:
+[xUnit.net 00:00:03.44]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Program.cs(41,0): at Program.&lt;Main&gt;$(String[] args)
+[xUnit.net 00:00:03.44]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+[xUnit.net 00:00:03.44]            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:03.44]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:03.44]            at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.CreateHost()
+[xUnit.net 00:00:03.44]            at Microsoft.Extensions.Hosting.HostFactoryResolver.&lt;&gt;c__DisplayClass10_0.&lt;ResolveHostFactory&gt;b__0(String[] args)
+[xUnit.net 00:00:03.44]            at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.Build()
+[xUnit.net 00:00:03.44]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+[xUnit.net 00:00:03.44]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:03.44]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:03.44]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.44]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.44]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:03.45]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:03.45]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Controllers/RootEndPointTest.cs(13,0): at BackendESP.IntegrationTests.Controllers.RootEndpointTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:03.45]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+[xUnit.net 00:00:03.45]            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:03.45]       System.InvalidOperationException : POSTGRES_PASSWORD environment variable is required
+[xUnit.net 00:00:03.45]       Stack Trace:
+[xUnit.net 00:00:03.45]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Program.cs(41,0): at Program.&lt;Main&gt;$(String[] args)
+[xUnit.net 00:00:03.45]            at InvokeStub_Program.&lt;Main&gt;$(Object, Span`1)
+[xUnit.net 00:00:03.45]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:03.45]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:03.45]            at Microsoft.Extensions.Hosting.HostFactoryResolver.HostingListener.CreateHost()
+[xUnit.net 00:00:03.45]            at Microsoft.Extensions.Hosting.HostFactoryResolver.&lt;&gt;c__DisplayClass10_0.&lt;ResolveHostFactory&gt;b__0(String[] args)
+[xUnit.net 00:00:03.45]            at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.Build()
+[xUnit.net 00:00:03.45]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+[xUnit.net 00:00:03.45]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:03.45]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:03.45]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.45]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.45]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:03.45]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:03.45]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs(16,0): at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:03.46]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+[xUnit.net 00:00:03.46]            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:03.86]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:03.86]       Stack Trace:
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:03.86]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:03.86]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Controllers/RootEndPointTest.cs(13,0): at BackendESP.IntegrationTests.Controllers.RootEndpointTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:03.86]            at InvokeStub_RootEndpointTests..ctor(Object, Span`1)
+[xUnit.net 00:00:03.86]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:03.86]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:03.86]       Stack Trace:
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:03.86]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:03.86]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:03.87]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs(16,0): at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:03.87]            at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:03.87]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:03.87]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:03.87]       Stack Trace:
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:03.87]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:03.87]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:03.87]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs(16,0): at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:03.87]            at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:03.87]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:04.16]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:04.16]       Stack Trace:
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:04.16]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:04.16]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs(16,0): at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:04.16]            at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:04.16]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:04.16]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:04.16]       Stack Trace:
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:04.16]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:04.16]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:04.16]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs(16,0): at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:04.16]            at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:04.16]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:04.42]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:04.43]       Stack Trace:
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:04.43]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:04.43]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs(16,0): at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:04.43]            at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:04.43]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:04.43]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:04.43]       Stack Trace:
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:04.43]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:04.43]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:04.44]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.44]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.44]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:04.44]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:04.44]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs(16,0): at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:04.44]            at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:04.44]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:04.71]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:04.71]       Stack Trace:
+[xUnit.net 00:00:04.71]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:04.71]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:04.71]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:04.71]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:04.71]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:04.71]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:04.71]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:04.71]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:04.72]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs(16,0): at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:04.72]            at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:04.72]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:04.72]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:04.72]       Stack Trace:
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:04.72]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:04.72]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:04.72]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs(16,0): at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:04.72]            at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:04.72]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:05.00]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:05.00]       Stack Trace:
+[xUnit.net 00:00:05.00]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:05.00]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:05.00]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:05.00]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:05.00]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:05.00]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:05.00]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:05.00]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.00]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.00]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:05.00]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:05.00]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs(16,0): at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:05.00]            at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:05.00]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:05.01]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:05.01]       Stack Trace:
+[xUnit.net 00:00:05.01]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:05.01]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:05.01]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:05.01]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:05.01]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:05.01]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:05.01]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:05.01]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.01]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.01]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:05.01]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:05.01]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs(16,0): at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:05.01]            at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:05.01]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:05.29]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:05.29]       Stack Trace:
+[xUnit.net 00:00:05.29]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:05.29]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:05.29]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:05.30]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:05.30]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs(16,0): at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:05.30]            at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:05.30]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:05.30]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:05.30]       Stack Trace:
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:05.30]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:05.30]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:05.30]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs(16,0): at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:05.30]            at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:05.30]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:05.59]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:05.59]       Stack Trace:
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:05.59]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:05.59]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs(16,0): at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:05.59]            at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:05.59]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:05.59]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:05.59]       Stack Trace:
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:05.59]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:05.59]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:05.59]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs(16,0): at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:05.59]            at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:05.59]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:05.88]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:05.88]       Stack Trace:
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:05.88]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:05.88]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Players/PlayerApiTests.cs(16,0): at BackendESP.IntegrationTests.Players.PlayerApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:05.88]            at InvokeStub_PlayerApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:05.88]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:05.88]       System.InvalidOperationException : Solution root could not be located using application root /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/bin/Debug/net9.0/.
+[xUnit.net 00:00:05.88]       Stack Trace:
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String applicationBasePath, String solutionName)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.UseSolutionRelativeContentRoot(IWebHostBuilder builder, String solutionRelativePath, String solutionName)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.SetContentRoot(IWebHostBuilder builder)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.&lt;ConfigureHostBuilder&gt;b__22_0(IWebHostBuilder webHostBuilder)
+[xUnit.net 00:00:05.88]            at Microsoft.Extensions.Hosting.GenericHostWebHostBuilderExtensions.ConfigureWebHost(IHostBuilder builder, Func`3 createWebHostBuilder, Action`1 configure, Action`1 configureWebHostBuilder)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+[xUnit.net 00:00:05.88]            at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+[xUnit.net 00:00:05.88]         /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP.IntegrationTests/Robots/RobotApiTests.cs(16,0): at BackendESP.IntegrationTests.Robots.RobotApiTests..ctor(CustomWebApplicationFactory factory)
+[xUnit.net 00:00:05.88]            at InvokeStub_RobotApiTests..ctor(Object, Span`1)
+[xUnit.net 00:00:05.88]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:05.89]   Finished:    BackendESP.IntegrationTests
+</system-out>
+    <system-err>Error - [xUnit.net 00:00:03.40]     BackendESP.IntegrationTests.Robots.RobotApiTests.CreateRobot_Returns200_WhenNewRobot [FAIL]
+Error - [xUnit.net 00:00:03.44]     BackendESP.IntegrationTests.Controllers.RootEndpointTests.Get_Players_Returns_Success [FAIL]
+Error - [xUnit.net 00:00:03.45]     BackendESP.IntegrationTests.Players.PlayerApiTests.DeletePlayer_Returns200_WhenPlayerExists [FAIL]
+Error - [xUnit.net 00:00:03.86]     BackendESP.IntegrationTests.Controllers.RootEndpointTests.Get_Root_Returns_HelloWorld [FAIL]
+Error - [xUnit.net 00:00:03.86]     BackendESP.IntegrationTests.Robots.RobotApiTests.GetAllRobots_Returns200_WithSeededRobot [FAIL]
+Error - [xUnit.net 00:00:03.87]     BackendESP.IntegrationTests.Players.PlayerApiTests.DeletePlayer_Returns404_WhenPlayerDoesNotExist [FAIL]
+Error - [xUnit.net 00:00:04.15]     BackendESP.IntegrationTests.Robots.RobotApiTests.DeleteRobot_Returns404_WhenRobotDoesNotExist [FAIL]
+Error - [xUnit.net 00:00:04.16]     BackendESP.IntegrationTests.Players.PlayerApiTests.GetPlayer_Returns200_WhenPlayerExists [FAIL]
+Error - [xUnit.net 00:00:04.42]     BackendESP.IntegrationTests.Players.PlayerApiTests.CreatePlayer_Returns200_WhenValidPlayerProvided [FAIL]
+Error - [xUnit.net 00:00:04.43]     BackendESP.IntegrationTests.Robots.RobotApiTests.GetRobot_Returns200_WhenRobotExists [FAIL]
+Error - [xUnit.net 00:00:04.71]     BackendESP.IntegrationTests.Robots.RobotApiTests.GetRobot_Returns404_WhenRobotDoesNotExist [FAIL]
+Error - [xUnit.net 00:00:04.72]     BackendESP.IntegrationTests.Players.PlayerApiTests.GetAllPlayers_Returns200_WithSeededPlayer [FAIL]
+Error - [xUnit.net 00:00:05.00]     BackendESP.IntegrationTests.Players.PlayerApiTests.CreatePlayer_Returns404_WhenUserNameIsNull [FAIL]
+Error - [xUnit.net 00:00:05.01]     BackendESP.IntegrationTests.Robots.RobotApiTests.UpdateRobot_Returns404_WhenRobotNotFound [FAIL]
+Error - [xUnit.net 00:00:05.29]     BackendESP.IntegrationTests.Robots.RobotApiTests.CreateRobot_Returns400_WhenRobotAlreadyExists [FAIL]
+Error - [xUnit.net 00:00:05.30]     BackendESP.IntegrationTests.Players.PlayerApiTests.UpdatePlayer_Returns400_WhenPlayerNotFound [FAIL]
+Error - [xUnit.net 00:00:05.59]     BackendESP.IntegrationTests.Robots.RobotApiTests.UpdateRobot_Returns200_WhenRobotExists [FAIL]
+Error - [xUnit.net 00:00:05.59]     BackendESP.IntegrationTests.Players.PlayerApiTests.UpdatePlayer_Returns200_WhenPlayerExists [FAIL]
+Error - [xUnit.net 00:00:05.88]     BackendESP.IntegrationTests.Players.PlayerApiTests.GetPlayer_Returns404_WhenPlayerDoesNotExist [FAIL]
+Error - [xUnit.net 00:00:05.88]     BackendESP.IntegrationTests.Robots.RobotApiTests.DeleteRobot_Returns200_WhenRobotExists [FAIL]
+</system-err>
+  </testsuite>
+</testsuites>

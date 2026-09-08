@@ -1,0 +1,100 @@
+version: "3"
+
+vars:
+  TASK_BACKEND_PROJECT_PATH: "project/Backend/BackendESP"
+  TASK_BACKEND_BUILD_PATH: "build/Backend"
+  TASK_DOTNET_VERSION: "9.0"
+  TASK_BACKEND_CSRPROJ: "BackendESP.csproj"
+  BUILD_CONFIGURATION: "Release"
+
+
+tasks:
+  # ==================================
+  #    BACKEND TASKS
+  # ==================================
+
+# Restore dependencies
+  restore:
+    desc: Restore project dependencies
+    dir: '{{.TASK_BACKEND_PROJECT_PATH}}'
+    cmds:
+      - echo "Restoring dependencies for {{.TASK_BACKEND_CSRPROJ}}..."
+      - rm -rf obj bin
+      - dotnet restore {{.TASK_BACKEND_CSRPROJ}}
+
+# Build Backend project
+  build:
+    desc: Build the backend project
+    dir: '{{.TASK_BACKEND_PROJECT_PATH}}'
+    cmds:
+      - echo "Current directory:"
+      - pwd
+      - echo ""
+      - echo "Project structure:"
+      - ls -la
+      - echo ""
+      - echo "Backend directory:"
+      - ls -la {{.TASK_BACKEND_PROJECT_PATH}} || echo "❌ Backend path not found"
+      - echo ""
+      - echo "Looking for .csproj files:"
+      - find . -name "*.csproj" -type f
+      - echo "Building backend project {{.TASK_BACKEND_CSRPROJ}}..."
+      - dotnet build {{.TASK_BACKEND_CSRPROJ}} --configuration {{.BUILD_CONFIGURATION}} --output ../{{.TASK_BACKEND_BUILD_PATH}} --no-restore
+
+  # Clean Backend project
+  clean:
+    desc: Clean the backend project
+    dir: '{{.TASK_BACKEND_PROJECT_PATH}}'
+    cmds:
+      - echo "Cleaning backend project {{.TASK_BACKEND_CSRPROJ}}..."
+      - dotnet clean {{.TASK_BACKEND_CSRPROJ}}
+      - rm -rf bin obj
+
+  # Publish Backend project
+  publish:
+    desc: Publish the backend project
+    dir: '{{.TASK_BACKEND_PROJECT_PATH}}'
+    cmds:
+      - echo "📦 Publishing backend project {{.TASK_BACKEND_CSRPROJ}}..."
+      - dotnet publish {{.TASK_BACKEND_CSRPROJ}}
+      - echo "✅ Backend published to {{.TASK_BACKEND_BUILD_PATH}} successfully."
+
+# Run backend locally
+  backend:run:
+    desc: Run the backend application locally
+    dir: '{{.TASK_BACKEND_BUILD_PATH}}'
+    cmds:
+      - echo "🚀 Running backend application..."
+      - dotnet {{.TASK_BACKEND_BUILD_PATH}}/BackendESP.dll
+
+# Stop backend locally
+  backend:stop:
+    desc: Stop the backend application
+    dir: '{{.TASK_BACKEND_BUILD_PATH}}'
+    cmds:
+      - echo "🛑 Stopping backend application..."
+      - dotnet {{.TASK_BACKEND_BUILD_PATH}}/BackendESP.dll --stop
+
+# Backend tests
+  backend:test:
+    desc: Run backend tests
+    dir: '{{.TASK_BACKEND_PROJECT_PATH}}'
+    cmds:
+      - echo "🧪 Running backend tests..."
+      - dotnet test --no-restore --verbosity normal
+
+# Generate DocFX documentation
+  docs:
+    desc: Generate API documentation with DocFX (output → project/Backend/docs/_site/)
+    dir: project/Backend
+    cmds:
+      - dotnet tool restore
+      - dotnet docfx docs/docfx.json
+
+# Serve the pre-built DocFX site locally (run "task docs" first)
+  docs:serve:
+    desc: Serve the DocFX site at http://localhost:8080 (run "task docs" first)
+    dir: project/Backend
+    cmds:
+      - dotnet docfx serve docs/_site --port 8080
+

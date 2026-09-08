@@ -1,0 +1,298 @@
+---
+# https://taskfile.dev
+version: "3"
+
+# Tasks
+vars:
+  # Define any variables here if needed
+  PROJECT_NAME: augmented-Bot-Battle
+  CI_PROJECT_DIR: .
+  TASK_FLAGS: '{{.TASK_FLAGS | default ""}}'
+  TASK_DEVSECOPS_ICON: '{{.TASK_DEVSECOPS_ICON | default "♾️"}}'
+
+# Includes : Specify necessary and additional components for development
+# - Essential includes are required for a successful Docker build.
+# - Optional includes extras like tests and lint (not needed for Docker builds)
+includes:
+  # Essential includes (required for a successful Docker build)
+  # specify necessary taskfiles for each stage of the DevSecOps pipeline
+  devsecops:plan:
+    taskfile: .config/devsecops/plan/taskfile.yml
+  devsecops:code:lint:
+    taskfile: .config/devsecops/code/megalinter/taskfile.yml
+  devsecops:code:fix:
+    taskfile: .config/devsecops/code/megalinter/taskfile.yml
+  devsecops:code:lint:branch:
+    taskfile: .config/devsecops/code/lint_branch/taskfile.yml
+  devsecops:code:sonarqube:
+    taskfile: .config/devsecops/code/sonarqube/taskfile.yml
+  devsecops:code:commitizen:
+    taskfile: .config/devsecops/code/commitizen/taskfile.yml
+  devsecops:code:commitlint:
+    taskfile: .config/devsecops/code/commitlint/taskfile.yml
+  devsecops:code:security:
+    taskfile: .config/devsecops/code/security/taskfile.yml
+  devsecops:build:unity:
+    taskfile: .config/devsecops/build/unity/taskfile.yml
+  devsecops:build:backend:
+    taskfile: .config/devsecops/build/backend/taskfile.yml
+  devsecops:build:
+    taskfile: .config/devsecops/build/taskfile.yml
+  devsecops:test:
+    taskfile: .config/devsecops/test/backend/taskfile.yml
+  devsecops:test:unity:
+    taskfile: .config/devsecops/test/unity/taskfile.yml
+  devsecops:release:
+    taskfile: .config/devsecops/release/taskfile.yml
+  devsecops:deploy:
+    taskfile: .config/devsecops/deploy/taskfile.yml
+  devsecops:operate:
+    taskfile: .config/devsecops/operate/taskfile.yml
+  devsecops:monitor:
+    taskfile: .config/devsecops/monitor/taskfile.yml
+  devsecops:feedback:
+    taskfile: .config/devsecops/feedback/taskfile.yml
+
+# Tasks
+tasks:
+  devsecops:
+    # Orchestrate the entire DevSecOps pipeline
+    desc: Run the DevSecOps pipeline
+    cmds:
+      - task plan
+      - task code:lint
+      - task code:fix
+      - task code:sonarqube
+      - task build
+      - task test
+      - task release
+      - task deploy
+      - task operate
+      - task monitor
+      - task feedback
+
+  # Define individual tasks for each stage of the DevSecOps pipeline
+  # Planning
+  plan:
+    desc: Plan the project
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the planning phase..."
+        silent: true
+      - task devsecops:plan:plan
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Planning phase completed."
+        silent: true
+
+  # Code tasks used in the code stage
+  code:branch:
+    desc: Lint branch name according to conventions.
+    cmds:
+      - cmd: echo "Linting branch name..."
+        silent: true
+      - task devsecops:code:lint:branch
+
+  code:lint:
+    desc: Check all the project with megalinter
+    cmds:
+      - cmd: echo "Running Code scanning..."
+        silent: true
+      - task: devsecops:code:lint:branch
+      - task: devsecops:code:commitlint
+      - task: devsecops:code:lint:npx
+      - cmd: echo "Code scanning completed."
+
+  code:security:
+    desc: Scan artifacts and dependencies for security vulnerabilities
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting vulnerability scans..."
+        silent: true
+      - task: devsecops:code:security:scan:security
+      - task: devsecops:code:security:scan:security:report
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Security scans completed."
+        silent: true
+
+  code:sonarqube:
+    desc: Scan the project with SonarQube
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting SonarQube scan..."
+        silent: true
+      - task: devsecops:code:sonarqube:preview
+      - task: devsecops:code:sonarqube:install-tools
+      - task: devsecops:code:sonarqube:scan
+      - task: devsecops:code:sonarqube:report
+        silent: true
+
+  code:commitizen:
+    desc: Check commit messages with commitizen.
+    cmds:
+      - cmd: echo "Checking commit messages with commitizen..."
+        silent: true
+      - task: devsecops:code:commitizen:check
+      - task: devsecops:code:commitizen:bump-version
+        silent: true
+      - cmd: echo "Commit message check completed."
+
+  code:commitlint:
+    desc: Check commit messages with commitlint.
+    cmds:
+      - cmd: echo "Checking commit messages with commitlint..."
+        silent: true
+      - task: devsecops:code:commitlint
+        silent: true
+      - cmd: echo "Commit message check completed."
+
+  # Build tasks used in the build stage
+  build:unity:
+    desc: Build the Unity project
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the build phase..."
+        silent: true
+      - task: devsecops:build:unity:activate-license
+      - task: devsecops:build:unity:build:android
+
+  build:backend:
+    desc: Build the backend project
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the backend build phase..."
+        silent: true
+      - task: devsecops:build:backend:restore
+      - task: devsecops:build:backend:build
+      - task: devsecops:build:backend:publish
+
+  build:docker:
+    desc: Build the project
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the build phase..."
+        silent: true
+      - task: devsecops:build:build
+
+  # Test tasks used in the test stage
+  test:
+    desc: Test the project
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the testing phase..."
+        silent: true
+      - task: devsecops:test:backend
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Testing phase completed."
+        silent: true
+
+  test:dev:
+    desc: Test the project in dev environment
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the testing phase..."
+        silent: true
+      - task: devsecops:test:backend:dev
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Testing phase completed."
+        silent: true
+
+  test:integration:
+    desc: Run integration tests for the project
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting integration tests..."
+        silent: true
+      - task: devsecops:test:integration
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Integration tests completed."
+        silent: true
+
+  test:integration:dev:
+    desc: Run integration tests for the project in dev environment
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting integration tests..."
+        silent: true
+      - task: devsecops:test:integration:dev
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Integration tests completed."
+        silent: true
+
+  test:e2e:
+    desc: Run end-to-end tests (AltTester)
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting end-to-end tests..."
+        silent: true
+      - task: devsecops:test:unity:e2e
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} End-to-end tests completed."
+        silent: true
+
+  test:e2e:dev:
+    desc: Run end-to-end tests in dev environment
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting end-to-end tests (dev)..."
+        silent: true
+      - task: devsecops:test:unity:e2e:dev
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} End-to-end tests (dev) completed."
+        silent: true
+
+  # Release tasks used in the release stage
+  release:dev:
+    desc: Release the project
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting release phase..."
+        silent: true
+      - task: devsecops:release:release:dev
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Release phase completed."
+        silent: true
+  
+  release:prod:
+    desc: Release the project to production environment
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting release phase..."
+        silent: true
+      - task: devsecops:release:release:prod
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Release phase completed."
+        silent: true  
+
+  version:bump:
+    desc: Bump the project version
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the version bump phase..."
+        silent: true
+      - task: devsecops:release:version:bump
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Version bump phase completed."
+        silent: true
+
+  # Deploy tasks used in the deploy stage
+  deploy:dev:
+    desc: Deploy the project
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the deployment phase..."
+        silent: true
+      - task: devsecops:deploy:deploy:dev
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Deployment phase completed."
+        silent: true
+
+  deploy:prod:
+    desc: Deploy the project to production environment
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the deployment phase..."
+        silent: true
+      - task: devsecops:deploy:deploy:prod
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Deployment phase completed."
+        silent: true
+
+  # Operate task used in the operate stage
+  operate:
+    desc: Operate the project
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the operation phase..."
+        silent: true
+      - task: devsecops:operate:operate
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Operation phase completed."
+        silent: true
+
+  # Monitor task used in the monitor stage
+  monitor:
+    desc: Monitor the project
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the monitoring phase..."
+        silent: true
+      - task: devsecops:monitor:monitor
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Monitoring phase completed."
+        silent: true
+
+  # Feedback task used in the feedback stage
+  feedback:
+    desc: Gather feedback for the project
+    cmds:
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Starting the feedback phase..."
+        silent: true
+      - task: devsecops:feedback:feedback
+      - cmd: echo "{{.TASK_DEVSECOPS_ICON}} Feedback phase completed."
+        silent: true

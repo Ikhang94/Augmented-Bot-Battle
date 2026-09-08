@@ -1,0 +1,80 @@
+# https://taskfile.dev
+version: "3"
+
+vars:
+  UNITY_PROJECT_PATH: "project/Unity/ABB"
+  UNITY_VERSION: "2022.3"
+
+tasks:
+  default:
+    desc: Run all Unity tests
+    cmds:
+      - task: e2e
+
+  e2e:
+    desc: Run Unity PlayMode tests (license-activated, headless)
+    env:
+      SHELL: /bin/bash
+    preconditions:
+      - sh: '[ -n "$UNITY_USERNAME" ]'
+        msg: "UNITY_USERNAME environment variable must be set"
+      - sh: '[ -n "$UNITY_PASSWORD" ]'
+        msg: "UNITY_PASSWORD environment variable must be set"
+      - sh: '[ -n "$UNITY_SERIAL" ]'
+        msg: "UNITY_SERIAL environment variable must be set"
+    cmds:
+      - cmd: echo "🔑 Activating Unity license..."
+        silent: true
+      - cmd: mkdir -p /root/.local/share/unity3d/Unity
+      - |
+        unity-editor \
+          -quit \
+          -batchmode \
+          -nographics \
+          -logFile /dev/stdout \
+          -username "$UNITY_USERNAME" \
+          -password "$UNITY_PASSWORD" \
+          -serial "$UNITY_SERIAL"
+      - cmd: echo "🧪 Running Unity PlayMode tests..."
+        silent: true
+      # NOTE: do NOT pass -quit with -runTests. -runTests manages its own exit;
+      # -quit makes Unity shut down before the tests execute (no results file).
+      - |
+        unity-editor \
+          -batchmode \
+          -nographics \
+          -accept-apiupdate \
+          -projectPath "{{.UNITY_PROJECT_PATH}}" \
+          -runTests \
+          -testPlatform PlayMode \
+          -testResults "$(pwd)/test-results.xml" \
+          -logFile /dev/stdout
+      - cmd: |
+          mkdir -p reports/unity
+          if [ -f "test-results.xml" ]; then
+            cp test-results.xml reports/unity/playmode-results.xml
+            echo "✅ PlayMode tests completed - results saved"
+          else
+            echo "❌ No test results found - the test run did not produce results"
+            exit 1
+          fi
+      - cmd: |
+          echo "🔐 Returning Unity license..."
+          unity-editor -quit -batchmode -nographics -logFile /dev/stdout -returnlicense || true
+        silent: true
+
+  e2e:dev:
+    desc: Run Unity PlayMode tests in dev environment (from the Editor)
+    dir: "{{.UNITY_PROJECT_PATH}}"
+    cmds:
+      - cmd: echo "Running Unity PlayMode tests in dev mode (Editor)..."
+      - cmd: |
+          echo "⚠️  Dev mode: run the tests from the Unity Editor"
+          echo "📋 Steps:"
+          echo "   1. Open the project in Unity Editor"
+          echo "   2. Window > General > Test Runner"
+          echo "   3. Switch to 'Play Mode' tab"
+          echo "   4. Click 'Run All' to execute the PlayMode tests"
+          echo ""
+          echo "Or use CLI:"
+          echo "unity -projectPath . -runTests -testPlatform PlayMode -logFile -"

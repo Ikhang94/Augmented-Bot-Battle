@@ -1,0 +1,988 @@
+{
+  "BackendESP.dll": {
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\Models\\Gamesession.cs": {
+      "BackendESP.Models.Gamesession": {
+        "System.Int32 BackendESP.Models.Gamesession::get_Id()": {
+          "Lines": {
+            "8": 2
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> BackendESP.Models.Gamesession::get_HostPlayerId()": {
+          "Lines": {
+            "10": 4
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> BackendESP.Models.Gamesession::get_ClientPlayerId()": {
+          "Lines": {
+            "12": 4
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> BackendESP.Models.Gamesession::get_HostRobotId()": {
+          "Lines": {
+            "14": 4
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> BackendESP.Models.Gamesession::get_ClientRobotId()": {
+          "Lines": {
+            "16": 4
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.DateTime> BackendESP.Models.Gamesession::get_StartTime()": {
+          "Lines": {
+            "18": 4
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.DateTime> BackendESP.Models.Gamesession::get_EndTime()": {
+          "Lines": {
+            "20": 4
+          },
+          "Branches": []
+        },
+        "BackendESP.Models.Player BackendESP.Models.Gamesession::get_ClientPlayer()": {
+          "Lines": {
+            "22": 4
+          },
+          "Branches": []
+        },
+        "BackendESP.Models.Robot BackendESP.Models.Gamesession::get_ClientRobot()": {
+          "Lines": {
+            "24": 4
+          },
+          "Branches": []
+        },
+        "BackendESP.Models.Player BackendESP.Models.Gamesession::get_HostPlayer()": {
+          "Lines": {
+            "26": 4
+          },
+          "Branches": []
+        },
+        "BackendESP.Models.Robot BackendESP.Models.Gamesession::get_HostRobot()": {
+          "Lines": {
+            "28": 4
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\Models\\Leaderboard.cs": {
+      "BackendESP.Models.Leaderboard": {
+        "System.Int32 BackendESP.Models.Leaderboard::get_LeaderboardId()": {
+          "Lines": {
+            "8": 2
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> BackendESP.Models.Leaderboard::get_PlayerId()": {
+          "Lines": {
+            "10": 2
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> BackendESP.Models.Leaderboard::get_Rank()": {
+          "Lines": {
+            "12": 2
+          },
+          "Branches": []
+        },
+        "BackendESP.Models.Player BackendESP.Models.Leaderboard::get_Player()": {
+          "Lines": {
+            "14": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\Models\\Player.cs": {
+      "BackendESP.Models.Player": {
+        "System.Int32 BackendESP.Models.Player::get_PlayerId()": {
+          "Lines": {
+            "8": 11
+          },
+          "Branches": []
+        },
+        "System.String BackendESP.Models.Player::get_Username()": {
+          "Lines": {
+            "10": 16
+          },
+          "Branches": []
+        },
+        "System.String BackendESP.Models.Player::get_Email()": {
+          "Lines": {
+            "12": 15
+          },
+          "Branches": []
+        },
+        "System.String BackendESP.Models.Player::get_Password()": {
+          "Lines": {
+            "14": 15
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<BackendESP.Models.Gamesession> BackendESP.Models.Player::get_GamesessionClientPlayers()": {
+          "Lines": {
+            "16": 19
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<BackendESP.Models.Gamesession> BackendESP.Models.Player::get_GamesessionHostPlayers()": {
+          "Lines": {
+            "18": 19
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<BackendESP.Models.Leaderboard> BackendESP.Models.Player::get_Leaderboards()": {
+          "Lines": {
+            "20": 19
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<BackendESP.Models.PlayersRobot> BackendESP.Models.Player::get_PlayersRobots()": {
+          "Lines": {
+            "22": 19
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\Models\\PlayersRobot.cs": {
+      "BackendESP.Models.PlayersRobot": {
+        "System.Int32 BackendESP.Models.PlayersRobot::get_Id()": {
+          "Lines": {
+            "8": 2
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> BackendESP.Models.PlayersRobot::get_PlayerId()": {
+          "Lines": {
+            "10": 4
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> BackendESP.Models.PlayersRobot::get_RobotId()": {
+          "Lines": {
+            "12": 4
+          },
+          "Branches": []
+        },
+        "BackendESP.Models.Player BackendESP.Models.PlayersRobot::get_Player()": {
+          "Lines": {
+            "14": 4
+          },
+          "Branches": []
+        },
+        "BackendESP.Models.Robot BackendESP.Models.PlayersRobot::get_Robot()": {
+          "Lines": {
+            "16": 4
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\Models\\PostgresDbContext.cs": {
+      "BackendESP.Models.PostgresDbContext": {
+        "Microsoft.EntityFrameworkCore.DbSet`1<BackendESP.Models.Gamesession> BackendESP.Models.PostgresDbContext::get_Gamesessions()": {
+          "Lines": {
+            "14": 39
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<BackendESP.Models.Leaderboard> BackendESP.Models.PostgresDbContext::get_Leaderboards()": {
+          "Lines": {
+            "16": 39
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<BackendESP.Models.Player> BackendESP.Models.PostgresDbContext::get_Players()": {
+          "Lines": {
+            "18": 61
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<BackendESP.Models.PlayersRobot> BackendESP.Models.PostgresDbContext::get_PlayersRobots()": {
+          "Lines": {
+            "20": 39
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<BackendESP.Models.Robot> BackendESP.Models.PostgresDbContext::get_Robots()": {
+          "Lines": {
+            "22": 61
+          },
+          "Branches": []
+        },
+        "System.Void BackendESP.Models.PostgresDbContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "25": 1,
+            "26": 1,
+            "27": 1,
+            "28": 1,
+            "29": 1,
+            "30": 1,
+            "31": 1,
+            "32": 1,
+            "33": 1,
+            "34": 1,
+            "35": 1,
+            "36": 1,
+            "37": 1,
+            "38": 1,
+            "39": 1,
+            "40": 1,
+            "41": 1,
+            "42": 1,
+            "43": 1,
+            "44": 1,
+            "45": 1,
+            "46": 1,
+            "47": 1,
+            "48": 1,
+            "49": 1,
+            "50": 1,
+            "51": 1,
+            "52": 1,
+            "53": 1,
+            "54": 1,
+            "55": 1,
+            "56": 1,
+            "57": 1,
+            "58": 1,
+            "59": 2,
+            "61": 1,
+            "62": 1,
+            "63": 1,
+            "64": 1,
+            "65": 1,
+            "66": 1,
+            "67": 1,
+            "68": 1,
+            "69": 1,
+            "70": 1,
+            "71": 1,
+            "72": 1,
+            "73": 1,
+            "74": 2,
+            "76": 1,
+            "77": 1,
+            "78": 1,
+            "79": 1,
+            "80": 1,
+            "81": 1,
+            "82": 1,
+            "83": 1,
+            "84": 1,
+            "85": 1,
+            "86": 1,
+            "87": 1,
+            "88": 1,
+            "89": 1,
+            "90": 1,
+            "91": 1,
+            "92": 2,
+            "94": 1,
+            "95": 1,
+            "96": 1,
+            "97": 1,
+            "98": 1,
+            "99": 1,
+            "100": 1,
+            "101": 1,
+            "102": 1,
+            "103": 1,
+            "104": 1,
+            "105": 1,
+            "106": 1,
+            "107": 1,
+            "108": 1,
+            "109": 1,
+            "110": 1,
+            "111": 2,
+            "113": 1,
+            "114": 1,
+            "115": 1,
+            "116": 1,
+            "117": 1,
+            "118": 1,
+            "119": 1,
+            "120": 1,
+            "121": 1,
+            "122": 1,
+            "123": 2,
+            "126": 1
+          },
+          "Branches": []
+        },
+        "System.Void BackendESP.Models.PostgresDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<BackendESP.Models.PostgresDbContext>)": {
+          "Lines": {
+            "10": 38,
+            "11": 38,
+            "12": 38
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\Models\\Robot.cs": {
+      "BackendESP.Models.Robot": {
+        "System.Int32 BackendESP.Models.Robot::get_RobotId()": {
+          "Lines": {
+            "8": 8
+          },
+          "Branches": []
+        },
+        "System.String BackendESP.Models.Robot::get_Name()": {
+          "Lines": {
+            "10": 13
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<BackendESP.Models.Gamesession> BackendESP.Models.Robot::get_GamesessionClientRobots()": {
+          "Lines": {
+            "12": 16
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<BackendESP.Models.Gamesession> BackendESP.Models.Robot::get_GamesessionHostRobots()": {
+          "Lines": {
+            "14": 16
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<BackendESP.Models.PlayersRobot> BackendESP.Models.Robot::get_PlayersRobots()": {
+          "Lines": {
+            "16": 16
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\DTO\\PlayerDTO.cs": {
+      "BackendESP.DTO.PlayerDTO": {
+        "System.Nullable`1<System.Int32> BackendESP.DTO.PlayerDTO::get_PlayerID()": {
+          "Lines": {
+            "5": 11
+          },
+          "Branches": []
+        },
+        "System.String BackendESP.DTO.PlayerDTO::get_UserName()": {
+          "Lines": {
+            "6": 25
+          },
+          "Branches": []
+        },
+        "System.String BackendESP.DTO.PlayerDTO::get_Email()": {
+          "Lines": {
+            "7": 26
+          },
+          "Branches": []
+        },
+        "System.String BackendESP.DTO.PlayerDTO::get_Password()": {
+          "Lines": {
+            "8": 21
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\DTO\\RobotDTO.cs": {
+      "BackendESP.DTO.RobotDTO": {
+        "System.String BackendESP.DTO.RobotDTO::get_RobotName()": {
+          "Lines": {
+            "5": 22
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\Data\\PlayerData.cs": {
+      "BackendESP.Data.PlayerData": {
+        "System.Void BackendESP.Data.PlayerData::.ctor(BackendESP.Models.PostgresDbContext)": {
+          "Lines": {
+            "14": 17,
+            "15": 17,
+            "16": 17,
+            "17": 17
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Data.PlayerData/<CreatePlayerAsync>d__4": {
+        "System.Void BackendESP.Data.PlayerData/<CreatePlayerAsync>d__4::MoveNext()": {
+          "Lines": {
+            "70": 5,
+            "71": 5,
+            "72": 2,
+            "73": 2,
+            "76": 3,
+            "77": 3,
+            "78": 3,
+            "79": 3,
+            "80": 3,
+            "81": 3,
+            "83": 3,
+            "84": 3,
+            "85": 2,
+            "86": 2,
+            "87": 2,
+            "88": 1,
+            "90": 5
+          },
+          "Branches": [
+            {
+              "Line": 71,
+              "Offset": 30,
+              "EndOffset": 32,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 4
+            },
+            {
+              "Line": 71,
+              "Offset": 43,
+              "EndOffset": 45,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 71,
+              "Offset": 43,
+              "EndOffset": 61,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 3
+            },
+            {
+              "Line": 71,
+              "Offset": 30,
+              "EndOffset": 64,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 71,
+              "Offset": 67,
+              "EndOffset": 69,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 2
+            },
+            {
+              "Line": 71,
+              "Offset": 67,
+              "EndOffset": 86,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 3
+            }
+          ]
+        }
+      },
+      "BackendESP.Data.PlayerData/<DeletePlayerAsync>d__6": {
+        "System.Void BackendESP.Data.PlayerData/<DeletePlayerAsync>d__6::MoveNext()": {
+          "Lines": {
+            "118": 3,
+            "120": 3,
+            "121": 3,
+            "122": 2,
+            "123": 1,
+            "124": 1,
+            "125": 1,
+            "127": 1,
+            "128": 1,
+            "129": 1,
+            "130": 1,
+            "133": 1,
+            "134": 3
+          },
+          "Branches": [
+            {
+              "Line": 122,
+              "Offset": 208,
+              "EndOffset": 210,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 122,
+              "Offset": 208,
+              "EndOffset": 226,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "BackendESP.Data.PlayerData/<GetAllPlayersAsync>d__2": {
+        "System.Void BackendESP.Data.PlayerData/<GetAllPlayersAsync>d__2::MoveNext()": {
+          "Lines": {
+            "19": 3,
+            "20": 3,
+            "22": 3,
+            "23": 3,
+            "24": 10,
+            "25": 2,
+            "26": 2,
+            "27": 2,
+            "28": 2,
+            "29": 2,
+            "30": 2,
+            "31": 2,
+            "32": 2,
+            "33": 2,
+            "34": 2,
+            "35": 1,
+            "36": 1,
+            "37": 1,
+            "38": 1,
+            "41": 2,
+            "42": 3
+          },
+          "Branches": [
+            {
+              "Line": 24,
+              "Offset": 331,
+              "EndOffset": 200,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            },
+            {
+              "Line": 24,
+              "Offset": 331,
+              "EndOffset": 336,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            }
+          ]
+        }
+      },
+      "BackendESP.Data.PlayerData/<GetPlayerAsync>d__3": {
+        "System.Void BackendESP.Data.PlayerData/<GetPlayerAsync>d__3::MoveNext()": {
+          "Lines": {
+            "45": 3,
+            "47": 3,
+            "48": 3,
+            "50": 2,
+            "51": 1,
+            "53": 1,
+            "54": 1,
+            "55": 1,
+            "56": 1,
+            "57": 1,
+            "58": 1,
+            "59": 1,
+            "60": 1,
+            "61": 1,
+            "64": 1,
+            "65": 1,
+            "66": 1,
+            "68": 3
+          },
+          "Branches": [
+            {
+              "Line": 50,
+              "Offset": 196,
+              "EndOffset": 198,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 50,
+              "Offset": 196,
+              "EndOffset": 214,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "BackendESP.Data.PlayerData/<UpdatePlayerAsync>d__5": {
+        "System.Void BackendESP.Data.PlayerData/<UpdatePlayerAsync>d__5::MoveNext()": {
+          "Lines": {
+            "93": 3,
+            "95": 3,
+            "96": 3,
+            "97": 2,
+            "98": 1,
+            "100": 1,
+            "101": 1,
+            "102": 1,
+            "104": 1,
+            "106": 1,
+            "108": 1,
+            "109": 1,
+            "110": 1,
+            "111": 1,
+            "114": 1,
+            "115": 3
+          },
+          "Branches": [
+            {
+              "Line": 97,
+              "Offset": 349,
+              "EndOffset": 351,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 97,
+              "Offset": 349,
+              "EndOffset": 367,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\Data\\RobotData.cs": {
+      "BackendESP.Data.RobotData": {
+        "System.Void BackendESP.Data.RobotData::.ctor(BackendESP.Models.PostgresDbContext)": {
+          "Lines": {
+            "14": 15,
+            "15": 15,
+            "16": 15,
+            "17": 15
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Data.RobotData/<CreateRobotAsync>d__4": {
+        "System.Void BackendESP.Data.RobotData/<CreateRobotAsync>d__4::MoveNext()": {
+          "Lines": {
+            "64": 3,
+            "66": 3,
+            "67": 3,
+            "68": 2,
+            "69": 1,
+            "70": 1,
+            "71": 1,
+            "72": 1,
+            "73": 1,
+            "75": 1,
+            "76": 1,
+            "78": 1,
+            "81": 1,
+            "82": 1,
+            "83": 1,
+            "85": 3
+          },
+          "Branches": [
+            {
+              "Line": 68,
+              "Offset": 363,
+              "EndOffset": 365,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 68,
+              "Offset": 363,
+              "EndOffset": 381,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "BackendESP.Data.RobotData/<DeleteRobotAsync>d__6": {
+        "System.Void BackendESP.Data.RobotData/<DeleteRobotAsync>d__6::MoveNext()": {
+          "Lines": {
+            "109": 3,
+            "111": 3,
+            "112": 3,
+            "113": 2,
+            "114": 1,
+            "115": 1,
+            "116": 1,
+            "118": 1,
+            "120": 1,
+            "121": 1,
+            "122": 1,
+            "124": 3
+          },
+          "Branches": [
+            {
+              "Line": 113,
+              "Offset": 208,
+              "EndOffset": 210,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 113,
+              "Offset": 208,
+              "EndOffset": 226,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "BackendESP.Data.RobotData/<GetAllRobotsAsync>d__2": {
+        "System.Void BackendESP.Data.RobotData/<GetAllRobotsAsync>d__2::MoveNext()": {
+          "Lines": {
+            "20": 3,
+            "21": 3,
+            "23": 3,
+            "24": 3,
+            "25": 10,
+            "26": 2,
+            "27": 2,
+            "28": 2,
+            "29": 2,
+            "30": 2,
+            "31": 2,
+            "33": 2,
+            "36": 1,
+            "37": 1,
+            "38": 1,
+            "39": 1,
+            "41": 3
+          },
+          "Branches": [
+            {
+              "Line": 25,
+              "Offset": 272,
+              "EndOffset": 200,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            },
+            {
+              "Line": 25,
+              "Offset": 272,
+              "EndOffset": 274,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            }
+          ]
+        }
+      },
+      "BackendESP.Data.RobotData/<GetRobotAsync>d__3": {
+        "System.Void BackendESP.Data.RobotData/<GetRobotAsync>d__3::MoveNext()": {
+          "Lines": {
+            "44": 3,
+            "46": 3,
+            "47": 3,
+            "48": 2,
+            "49": 1,
+            "51": 1,
+            "52": 1,
+            "53": 1,
+            "54": 1,
+            "55": 1,
+            "57": 1,
+            "58": 1,
+            "59": 1,
+            "61": 3
+          },
+          "Branches": [
+            {
+              "Line": 48,
+              "Offset": 196,
+              "EndOffset": 198,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 48,
+              "Offset": 196,
+              "EndOffset": 206,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "BackendESP.Data.RobotData/<UpdateRobotAsync>d__5": {
+        "System.Void BackendESP.Data.RobotData/<UpdateRobotAsync>d__5::MoveNext()": {
+          "Lines": {
+            "88": 3,
+            "90": 3,
+            "91": 3,
+            "92": 2,
+            "93": 1,
+            "95": 1,
+            "97": 1,
+            "98": 1,
+            "100": 1,
+            "102": 1,
+            "103": 1,
+            "104": 1,
+            "106": 3
+          },
+          "Branches": [
+            {
+              "Line": 92,
+              "Offset": 349,
+              "EndOffset": 351,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 92,
+              "Offset": 349,
+              "EndOffset": 367,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\Controllers\\PlayerController.cs": {
+      "BackendESP.Controllers.PlayerController": {
+        "System.Void BackendESP.Controllers.PlayerController::.ctor(BackendESP.Data.IPlayerData)": {
+          "Lines": {
+            "11": 5,
+            "12": 5,
+            "13": 5,
+            "14": 5
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Controllers.PlayerController/<CreatePlayer>d__2": {
+        "System.Void BackendESP.Controllers.PlayerController/<CreatePlayer>d__2::MoveNext()": {
+          "Lines": {
+            "18": 1,
+            "20": 1,
+            "21": 1
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Controllers.PlayerController/<DeletePlayerAsync>d__6": {
+        "System.Void BackendESP.Controllers.PlayerController/<DeletePlayerAsync>d__6::MoveNext()": {
+          "Lines": {
+            "46": 1,
+            "47": 1,
+            "48": 1
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Controllers.PlayerController/<GetAllPlayers>d__3": {
+        "System.Void BackendESP.Controllers.PlayerController/<GetAllPlayers>d__3::MoveNext()": {
+          "Lines": {
+            "26": 1,
+            "27": 1,
+            "28": 1
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Controllers.PlayerController/<GetPlayerAsync>d__4": {
+        "System.Void BackendESP.Controllers.PlayerController/<GetPlayerAsync>d__4::MoveNext()": {
+          "Lines": {
+            "32": 1,
+            "33": 1,
+            "34": 1
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Controllers.PlayerController/<UpdatePlayerAsync>d__5": {
+        "System.Void BackendESP.Controllers.PlayerController/<UpdatePlayerAsync>d__5::MoveNext()": {
+          "Lines": {
+            "38": 1,
+            "39": 1,
+            "40": 1,
+            "41": 1,
+            "42": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\degdi\\Documents\\data_project\\t-esp-800-project-71802-par_augmentedbotbattle\\project\\Backend\\BackendESP\\Controllers\\RobotController.cs": {
+      "BackendESP.Controllers.RobotController": {
+        "System.Void BackendESP.Controllers.RobotController::.ctor(BackendESP.Data.IRobotData)": {
+          "Lines": {
+            "13": 5,
+            "14": 5,
+            "15": 5,
+            "16": 5
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Controllers.RobotController/<CreateRobot>d__3": {
+        "System.Void BackendESP.Controllers.RobotController/<CreateRobot>d__3::MoveNext()": {
+          "Lines": {
+            "26": 1,
+            "27": 1,
+            "28": 1
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Controllers.RobotController/<DeleteRobotAsync>d__6": {
+        "System.Void BackendESP.Controllers.RobotController/<DeleteRobotAsync>d__6::MoveNext()": {
+          "Lines": {
+            "46": 1,
+            "47": 1,
+            "48": 1
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Controllers.RobotController/<GetAllRobots>d__2": {
+        "System.Void BackendESP.Controllers.RobotController/<GetAllRobots>d__2::MoveNext()": {
+          "Lines": {
+            "20": 1,
+            "21": 1,
+            "22": 1
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Controllers.RobotController/<GetRobotAsync>d__4": {
+        "System.Void BackendESP.Controllers.RobotController/<GetRobotAsync>d__4::MoveNext()": {
+          "Lines": {
+            "32": 1,
+            "33": 1,
+            "34": 1
+          },
+          "Branches": []
+        }
+      },
+      "BackendESP.Controllers.RobotController/<UpdateRobotAsync>d__5": {
+        "System.Void BackendESP.Controllers.RobotController/<UpdateRobotAsync>d__5::MoveNext()": {
+          "Lines": {
+            "38": 1,
+            "39": 1,
+            "40": 1,
+            "41": 1,
+            "42": 1
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}

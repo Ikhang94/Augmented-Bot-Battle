@@ -1,0 +1,25 @@
+---
+include:
+  - local: .config/gitlab/ci/before_script.yml
+  # - local: .config/gitlab/ci/services.yml
+  - local: .config/gitlab/ci/stages.yml
+  # - local: .config/gitlab/ci/tags.yml
+  - local: .config/gitlab/ci/variables.yml
+  - local: .config/gitlab/ci/workflow.yml
+
+  # ===== JOB DEFINITIONS =====
+  # Jobs
+  # Each job corresponds to a stage in the DevSecOps pipeline
+  # The jobs invoke the respective Taskfile tasks
+  # Artifacts are defined to preserve reports and outputs for analysis
+  # Jobs can have rules to control execution based on branch, variables, etc.
+
+  - local: .config/gitlab/ci/devsecops/plan.yml
+  - local: .config/gitlab/ci/devsecops/code.yml
+  - local: .config/gitlab/ci/devsecops/build.yml
+  - local: .config/gitlab/ci/devsecops/test.yml
+  - local: .config/gitlab/ci/devsecops/release.yml
+  - local: .config/gitlab/ci/devsecops/deploy.yml
+  - local: .config/gitlab/ci/devsecops/operate.yml
+  - local: .config/gitlab/ci/devsecops/monitor.yml
+  - local: .config/gitlab/ci/devsecops/feedback.yml

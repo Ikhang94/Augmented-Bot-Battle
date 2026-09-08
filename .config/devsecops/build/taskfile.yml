@@ -1,0 +1,28 @@
+# https://taskfile.dev
+version: "3"
+
+vars:
+  # Define any variables here if needed
+  PROJECT NAME: t-esp-800-project-71802-par_augmentedbotbattle
+  CI_PROJECT_DIR: .
+  TASK_FLAGS: '{{.TASK_FLAGS | default ""}}'
+  TASK_SEPARATOR: "\n====================================================================================================\n"
+  TASK_DEVESCOPS_ICON: '{{.TASK_DEVSECOPS_ICON | default "♾️"}}'
+
+tasks:
+  build:
+    # Build and push Docker image
+      desc: Build and push Docker image
+      cmds:
+        - cmd: echo "📦 Building and pushing Docker image..."
+          silent: true
+        - cmd: |
+            echo "Building image using Azure Container Registry Build Tasks..."
+            az acr build --registry "$AZURE_REGISTRY_USERNAME" --image unity-app: --image unity-app:"${CI_COMMIT_SHORT_SHA}" --file Dockerfile --platform android/amd64 .
+            echo "Image built and pushed to ACR successfully!"
+            az acr repository show --name "$AZURE_REGISTRY_USERNAME" --image unity-app
+      env:
+        SHELL: /bin/bash
+      preconditions:
+        - sh: '[ -n "$AZURE_REGISTRY_USERNAME" ]'
+          msg: "AZURE_REGISTRY_USERNAME environment variable must be set"

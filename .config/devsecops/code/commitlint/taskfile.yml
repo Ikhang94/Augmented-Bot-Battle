@@ -1,0 +1,105 @@
+---
+version: "3"
+
+vars:
+  TASK_COMMITLINT_ENABLED: '{{.TASK_COMMITLINT_ENABLED | default "true"}}'
+  TASK_COMMITLINT_DIR: '{{.TASK_COMMITLINT_DIR | default ".config/linters/commitlint"}}'
+  TASK_COMMITLINT_COMMAND: '{{.TASK_COMMITLINT_COMMAND | default "bunx --bun commitlint"}}'
+  TASK_COMMITLINT_CONFIG: '{{.TASK_COMMITLINT_CONFIG | default ".config/linters/commitlint/config.yml"}}'
+  TASK_COMMITLINT_FROM: '{{.TASK_COMMITLINT_FROM | default "commitlint-baseline"}}'
+  TASK_COMMITLINT_TO: '{{.TASK_COMMITLINT_TO | default "HEAD"}}'
+
+tasks:
+  default:
+    desc: Check commit messages with commitlint.
+    summary: |
+      ℹ️ Description:
+        Runs commitlint to check commit messages.
+
+      🔧 Variables:
+        - TASK_COMMITLINT_COMMAND: Command to run commitlint. Default: "$HOME/.bun/bin/bunx commitlint"
+        - TASK_COMMITLINT_CONFIG: Path to commitlint configuration file. Default: ".config/commitlint/config.yml"
+        - TASK_COMMITLINT_FROM: Starting point for commit range. Default: "HEAD~1"
+        - TASK_COMMITLINT_TO: Ending point for commit range. Default: "HEAD"
+
+      🔐 Preconditions:
+        - The 'install' task must have been successfully executed.
+
+      🔄 Execution:
+        Runs commitlint on the specified range of commits.
+
+      📝 Note:
+        This task checks commit messages against the configured rules.
+    status:
+      - test "{{.TASK_COMMITLINT_ENABLED}}" = "false"
+    vars:
+      COMMITLINT_LINT_COMMAND: "{{.TASK_COMMITLINT_COMMAND}} --config {{.TASK_COMMITLINT_CONFIG}} --from {{.TASK_COMMITLINT_FROM}} --to {{.TASK_COMMITLINT_TO}}"
+      CURRENT_BRANCH: $(git rev-parse --abbrev-ref HEAD)
+      IS_CI: '{{.CI | default "false"}}'
+      RED: '\033[0;31m'
+      GREEN: '\033[0;32m'
+      BLUE: '\033[0;34m'
+      PURPLE: '\033[0;35m'
+      NC: '\033[0m'
+    cmds:
+      - cmd: echo "🔄 Checking commit messages with commitlint"
+        silent: true
+      - cmd: echo "{{.COMMITLINT_LINT_COMMAND}}"
+        silent: true
+      - cmd: |
+          # Run commitlint and capture the exit status
+          if ! {{.COMMITLINT_LINT_COMMAND}}; then
+            echo -e "{{.RED}}❌ Commit message lint failed. Please follow these steps to correct the issue:{{.NC}}"
+            echo -e "1. Note the erroneous commit message(s) from the '{{.BLUE}}⧗   input{{.NC}}' lines in the log above."
+            echo -e "2. Run the following command to start an interactive rebase from the beginning of your branch:"
+            echo -e "   {{.GREEN}}git rebase -i \$(git merge-base HEAD origin/main){{.NC}}"
+            echo -e "3. In the opened file, find the commit(s) with the incorrect message(s)."
+            echo -e "4. Change '{{.PURPLE}}pick{{.NC}}' to '{{.PURPLE}}reword{{.NC}}' at the beginning of the line(s) for the commit(s) you want to modify."
+            echo -e "5. Save and close the file. This will open each selected commit message for editing."
+            echo -e "6. Edit the commit message(s) to comply with the commitlint rules."
+            echo -e "7. After editing, force push your changes with:"
+            echo -e "   {{.GREEN}}git push --force-with-lease origin HEAD{{.NC}}"
+            echo -e "8. Run '{{.GREEN}}task commitlint:lint{{.NC}}' again to ensure all issues are resolved."
+            exit 1
+          else
+            echo -e "{{.GREEN}}✅ Commit messages are valid!{{.NC}}"
+          fi
+        silent: true
+      - cmd: echo '🎉 All commit messages passed commitlint checks.'
+        silent: true
+
+  lint-message:
+    desc: Lint a specific commit message file (for commit-msg hook).
+    summary: |
+      ℹ️ Description:
+        Runs commitlint --edit on a specific file provided as an argument.
+        This is intended for use with the git commit-msg hook.
+
+      🔧 Arguments:
+        - Commit message file path (provided by the hook).
+
+      🔄 Execution:
+        Runs commitlint in edit mode on the specified file.
+    vars:
+      # Takes the first argument passed to the task (the file path) - Old method
+      # COMMIT_MSG_FILE: '{{index .CLI_ARGS 0}}'
+      # The COMMIT_MSG_FILE variable is now passed directly when calling the task
+      # and is accessible via {{.COMMIT_MSG_FILE}}
+      # commitlint command with the --edit option
+      COMMITLINT_EDIT_COMMAND: "{{.TASK_COMMITLINT_COMMAND}} --config {{.TASK_COMMITLINT_CONFIG}} --edit {{.COMMIT_MSG_FILE}}"
+      RED: '\033[0;31m'
+      NC: '\033[0m'
+    cmds:
+      - cmd: echo "🔄 Linting commit message file {{.COMMIT_MSG_FILE}} with commitlint"
+        silent: true
+      - cmd: echo "{{.COMMITLINT_EDIT_COMMAND}}"
+        silent: true
+      - cmd: |
+          # Run commitlint --edit and capture the exit status
+          if ! {{.COMMITLINT_EDIT_COMMAND}}; then
+            echo -e "{{.RED}}❌ Commit message lint failed. Please fix the message in your editor or use 'git commit --amend'.{{.NC}}"
+            exit 1
+          fi
+        silent: true
+      - cmd: echo '🎉 Commit message passed commitlint.'
+        silent: true

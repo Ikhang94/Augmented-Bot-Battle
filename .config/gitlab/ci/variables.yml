@@ -1,0 +1,38 @@
+# This file defines global CI/CD variables for the GitLab pipeline
+# These variables are used across multiple stages of the DevSecOps pipeline
+variables:
+  UNITY_VERSION: "6000.0.53f1" 
+  UNITY_USERNAME: $UNITY_USERNAME
+  UNITY_PASSWORD: $UNITY_PASSWORD
+  UNITY_SERIAL: $UNITY_SERIAL
+  UNITY_LICENSE: $UNITY_LICENSE
+  BUILD_TARGET: "StandaloneLinux64"
+  SONAR_PROJECT_KEY: $SONAR_PROJECT_KEY
+  SONAR_HOST_URL: $SONAR_HOST_URL
+  SONAR_TOKEN: $SONAR_TOKEN
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_TLS_CERTDIR: "" # Disable Docker TLS for GitLab CI
+  DOCKER_DRIVER: overlay2
+  GIT_DEPTH: 10
+  DEFAULT_WORKSPACE: $CI_PROJECT_DIR
+
+  # Backend environment variables (non-sensibles)
+  # Variables sensibles (POSTGRES_PASSWORD, JWT_SECRET) sont dans GitLab Settings > CI/CD > Variables
+  POSTGRES_DB: testdb
+  POSTGRES_USER: testuser
+  JwtSettings__Issuer: TestIssuer
+  JwtSettings__Audience: TestAudience
+
+  # Deployment variables (must be set in GitLab Settings > CI/CD > Variables as protected/masked)
+  # DEV_IP_ADDRESS: set in CI/CD variables (IP or hostname of OVH VPS)
+  # SSH_PRIVATE_KEY: set in CI/CD variables (IMPORTANT: base64-encode the key: cat ~/.ssh/id_rsa | base64 -w0)
+  # AZURE_REGISTRY_USERNAME: set in CI/CD variables (ACR username)
+  # AZURE_REGISTRY_PASSWORD: set in CI/CD variables (ACR password/token)
+  # AZURE_REGISTRY_NAME: set in CI/CD variables (ACR name without .azurecr.io)
+  # AZURE_CONTAINER_APP_NAME: set in CI/CD variables (Container App name for dev)
+  # AZURE_CONTAINER_APP_NAME_PROD: set in CI/CD variables (optional, Container App name for prod)
+  # AZURE_RESOURCE_GROUP: set in CI/CD variables (Azure resource group name)
+
+  # DOCKER_TLS_CERTDIR: "/certs"
+  # DOCKER_TLS_VERIFY: 1
+  # DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"

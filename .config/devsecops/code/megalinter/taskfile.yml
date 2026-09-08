@@ -1,0 +1,72 @@
+---
+version: "3"
+
+vars:
+  TASK_MEGALINTER_ENABLED: '{{.TASK_MEGALINTER_ENABLED | default "true"}}'
+  TASK_MEGALINTER_CONTAINER_NAME: '{{.TASK_MEGALINTER_CONTAINER_NAME | default "megalinter-container"}}'
+  TASK_MEGALINTER_CONTAINER_VERSION: '{{.TASK_MEGALINTER_CONTAINER_VERSION | default "v8"}}'
+  TASK_MEGALINTER_IMAGE_PREFIX: '{{.TASK_MEGALINTER_IMAGE_PREFIX | default ""}}'
+  TASK_MEGALINTER_CONFIG: '{{.TASK_MEGALINTER_CONFIG | default ".config/devsecops/code/megalinter/config.yml"}}'
+  TASK_MEGALINTER_FLAVOR: '{{.TASK_MEGALINTER_FLAVOR | default ""}}'
+  TASK_MEGALINTER_RELEASE: '{{.TASK_MEGALINTER_RELEASE | default "mega-linter-runner@9.1.0"}}'
+  PROJECT_ROOT: '../../../..'
+
+tasks:
+  default:
+    desc: Run MegaLinter for comprehensive code analysis.
+    status:
+      - test "{{.TASK_MEGALINTER_ENABLED}}" = "false"
+    preconditions:
+      - sh: "command -v docker &> /dev/null"
+        msg: "❌ Docker is not installed. Please run the 'docker-ce:install' task first."
+    cmds:
+      - cmd: echo "🔄 Running megalinter..."
+        silent: true
+      - docker rm -f {{.TASK_MEGALINTER_CONTAINER_NAME}}
+      - rm -rf ./megalinter-reports
+      - defer: (docker cp {{.TASK_MEGALINTER_CONTAINER_NAME}}:/tmp/lint/megalinter-reports ./megalinter-reports && chown -R $(id -u):$(id -g) megalinter-reports) || true; docker rm -f {{.TASK_MEGALINTER_CONTAINER_NAME}}
+      - docker run --rm -d --name {{.TASK_MEGALINTER_CONTAINER_NAME}} -e MEGALINTER_CONFIG='.config/megalinter/config.yml' -v /var/run/docker.sock:/var/run/docker.sock:rw --entrypoint sleep {{.TASK_MEGALINTER_IMAGE_PREFIX}}oxsecurity/megalinter:{{.TASK_MEGALINTER_CONTAINER_VERSION}} infinity
+      - docker exec -i {{.TASK_MEGALINTER_CONTAINER_NAME}} tar -xzf - -C /tmp/lint
+      - docker exec {{.TASK_MEGALINTER_CONTAINER_NAME}} /bin/bash /entrypoint.sh
+      - docker cp {{.TASK_MEGALINTER_CONTAINER_NAME}}:/tmp/lint/megalinter-reports ./megalinter-reports
+      - cmd: echo "🎉 All files correctly linted with megalinter!"
+        silent: true
+
+  pnpm:dlx:
+    desc: Run pnpm dlx megalinter
+    cmds:
+      - cmd: echo "🔄 Running pnpm dlx megalinter..."
+        silent: true
+      - MEGALINTER_CONFIG=.config/megalinter/config.yml pnpm dlx --package {{.TASK_MEGALINTER_RELEASE}} mega-linter-runner
+      - cmd: echo "🎉 All files correctly linted with megalinter!"
+        silent: true
+
+  npx:
+    preconditions:
+      - sh: "test -f {{.TASK_MEGALINTER_CONFIG}}"
+        msg: "❌ Config file not found: {{.TASK_MEGALINTER_CONFIG}}"
+    desc: Run MegaLinter locally via npx (no Docker).
+    summary: |
+      Run MegaLinter locally via npx without Docker.
+
+      Variables: TASK_MEGALINTER_CONFIG, TASK_MEGALINTER_FLAVOR, TASK_MEGALINTER_RELEASE
+      Example: task megalinter:npx TASK_MEGALINTER_CONFIG=.config/megalinter/config.yml
+      Example with version: task megalinter:npx TASK_MEGALINTER_RELEASE=mega-linter-runner@9.2.0
+      Example with flavor: task megalinter:npx TASK_MEGALINTER_FLAVOR=javascript
+    status:
+      - test "{{.TASK_MEGALINTER_ENABLED}}" = "false"
+    cmds:
+      - cmd: echo "🔄 Running MegaLinter via npx"
+        silent: true
+      # Debug : afficher le répertoire
+      - cmd: pwd
+      - defer: docker run --rm -v {{.USER_WORKING_DIR}}/megalinter-reports:/reports alpine chmod -R 777 /reports 2>/dev/null || true
+      - cmd: >-
+          cd project && npx -y -p {{.TASK_MEGALINTER_RELEASE}} mega-linter-runner
+          --env 'MEGALINTER_CONFIG={{.TASK_MEGALINTER_CONFIG}}'
+          --env 'DISABLE_LINTERS=REPOSITORY_GIT_DIFF,COPYPASTE,SPELL'
+          --path ..
+          {{if .TASK_MEGALINTER_FLAVOR}}--env 'MEGALINTER_FLAVOR={{.TASK_MEGALINTER_FLAVOR}}'{{end}}
+          {{.CLI_ARGS}}
+      - cmd: echo '🎉 MegaLinter (npx) analysis completed successfully.'
+        silent: true

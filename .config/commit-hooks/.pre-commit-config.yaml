@@ -1,0 +1,14 @@
+
+# Config file for pre-commit, see https://pre-commit.com/
+repos:
+-   repo: https://github.com/commitizen-tools/commitizen
+    rev: v2.3.0
+    hooks:
+    -   id: commitizen
+        stages: [commit-msg]
+        additional_dependencies: ['markupsafe<2.1.0']
+
+-   repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.2
+    hooks:
+    -   id: gitleaks

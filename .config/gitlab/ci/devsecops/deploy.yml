@@ -1,0 +1,52 @@
+# Shared setup for deploy jobs (docker:dind + azure-cli via pip, no official image available for this combo)
+.deploy_setup:
+  image: docker:24.0.5
+  tags:
+    - docker
+  services:
+    - docker:24.0.5-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_DRIVER: overlay2
+  before_script:
+    - apk add --no-cache curl bash git jq python3 py3-pip gcc python3-dev musl-dev linux-headers
+    - mkdir -p ./bin
+    - curl -sL https://github.com/go-task/task/releases/download/v3.50.0/task_linux_amd64.tar.gz | tar -xzf - -C ./bin
+    - mv ./bin/task /usr/local/bin/task
+    - pip install --upgrade pip
+    - pip install azure-cli
+    - az login --service-principal --username="$SPN_CLIENT_ID" --password="$SPN_CLIENT_SECRET" --tenant="$SPN_TENANT_ID"
+    - az account set --subscription="$AZ_SUBSCRIPTION_ID"
+    - az account show
+
+deploy:dev:
+  stage: deploy
+  tags:
+    - docker
+  image: alpine:3.19
+  before_script:
+    - apk add --no-cache bash curl git openssh-client
+    - mkdir -p ./bin
+    - curl -sL https://github.com/go-task/task/releases/download/v3.50.0/task_linux_amd64.tar.gz | tar -xzf - -C ./bin
+    - mv ./bin/task /usr/local/bin/task
+  script:
+    - if [ "$CI_COMMIT_TAG" != "dev" ]; then echo "Tag must be 'dev'"; exit 1; fi
+    - task deploy:dev
+  rules:
+    - if: '$CI_COMMIT_TAG == "production"'
+      when: never
+    - if: '$CI_COMMIT_TAG == "dev"'
+      when: always
+
+deploy:prod:
+  extends: .deploy_setup
+  stage: deploy
+  script:
+    - if [ "$CI_COMMIT_TAG" != "production" ]; then echo "Tag must be 'production'"; exit 1; fi
+    - task deploy:prod
+  rules:
+    - if: '$CI_COMMIT_TAG == "dev"'
+      when: never
+    - if: '$CI_COMMIT_TAG == "production"'
+      when: always

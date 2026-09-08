@@ -1,0 +1,158 @@
+# https://taskfile.dev
+version: "3"
+
+vars:
+  TASK_DEVSECOPS_PLAN_ENABLED: '{{.TASK_DEVSECOPS_PLAN_ENABLED | default "true"}}'
+
+tasks:
+  plan:
+    desc: Validate pipeline configuration and required variables
+    cmds:
+      - cmd: echo "============================================================"
+        silent: true
+      - cmd: echo " Pipeline configuration check — Augmented Bot Battle"
+        silent: true
+      - cmd: echo "============================================================"
+        silent: true
+      - task: plan:check-azure
+      - task: plan:check-unity
+      - task: plan:check-sonarqube
+      - cmd: echo "============================================================"
+        silent: true
+      - cmd: echo " Configuration check completed"
+        silent: true
+      - cmd: echo "============================================================"
+        silent: true
+
+  plan:check-azure:
+    desc: Check Azure deployment variables
+    cmds:
+      - |
+        echo ""
+        echo "[ Azure / Deploy ]"
+        MISSING=0
+
+        check_var() {
+          local NAME=$1
+          local VALUE=$2
+          if [ -n "$VALUE" ]; then
+            echo "  PASS  $NAME"
+          else
+            echo "  WARN  $NAME is not set"
+            MISSING=$((MISSING + 1))
+          fi
+        }
+
+        check_var "SPN_CLIENT_ID"            "${SPN_CLIENT_ID}"
+        check_var "SPN_CLIENT_SECRET"        "${SPN_CLIENT_SECRET}"
+        check_var "SPN_TENANT_ID"            "${SPN_TENANT_ID}"
+        check_var "AZ_SUBSCRIPTION_ID"       "${AZ_SUBSCRIPTION_ID}"
+        check_var "AZURE_RESOURCE_GROUP"     "${AZURE_RESOURCE_GROUP}"
+        check_var "AZURE_CONTAINER_APP_NAME" "${AZURE_CONTAINER_APP_NAME}"
+        check_var "AZURE_REGISTRY_NAME"      "${AZURE_REGISTRY_NAME}"
+
+        if [ "$MISSING" -gt 0 ]; then
+          echo "  -> $MISSING variable(s) missing (required for deploy)"
+        else
+          echo "  -> All Azure variables configured"
+        fi
+
+  plan:check-unity:
+    desc: Check Unity build variables
+    cmds:
+      - |
+        echo ""
+        echo "[ Unity / Build ]"
+        MISSING=0
+
+        check_var() {
+          local NAME=$1
+          local VALUE=$2
+          if [ -n "$VALUE" ]; then
+            echo "  PASS  $NAME"
+          else
+            echo "  WARN  $NAME is not set"
+            MISSING=$((MISSING + 1))
+          fi
+        }
+
+        check_var "UNITY_USERNAME" "${UNITY_USERNAME}"
+        check_var "UNITY_PASSWORD" "${UNITY_PASSWORD}"
+        check_var "UNITY_SERIAL"   "${UNITY_SERIAL}"
+
+        if [ "$MISSING" -gt 0 ]; then
+          echo "  -> $MISSING variable(s) missing (required for Unity build)"
+        else
+          echo "  -> All Unity variables configured"
+        fi
+
+  plan:check-sonarqube:
+    desc: Check SonarQube analysis variables
+    cmds:
+      - |
+        echo ""
+        echo "[ SonarQube / Code quality ]"
+        MISSING=0
+
+        check_var() {
+          local NAME=$1
+          local VALUE=$2
+          if [ -n "$VALUE" ]; then
+            echo "  PASS  $NAME"
+          else
+            echo "  WARN  $NAME is not set"
+            MISSING=$((MISSING + 1))
+          fi
+        }
+
+        check_var "SONAR_HOST_URL"    "${SONAR_HOST_URL}"
+        check_var "SONAR_TOKEN"       "${SONAR_TOKEN}"
+        check_var "SONAR_PROJECT_KEY" "${SONAR_PROJECT_KEY}"
+
+        if [ "$MISSING" -gt 0 ]; then
+          echo "  -> $MISSING variable(s) missing (required for SonarQube)"
+        else
+          echo "  -> All SonarQube variables configured"
+        fi
+
+  plan:check-production:
+    desc: Check production operate/monitor/feedback variables
+    cmds:
+      - |
+        echo ""
+        echo "[ Production / Operate + Monitor + Feedback ]"
+        MISSING=0
+
+        check_var() {
+          local NAME=$1
+          local VALUE=$2
+          if [ -n "$VALUE" ]; then
+            echo "  PASS  $NAME"
+          else
+            echo "  WARN  $NAME is not set"
+            MISSING=$((MISSING + 1))
+          fi
+        }
+
+        check_var "PRODUCTION_URL"    "${PRODUCTION_URL}"
+        check_var "AZURE_RESOURCE_GROUP"    "${AZURE_RESOURCE_GROUP}"
+        check_var "APP_SERVICE_NAME"  "${APP_SERVICE_NAME}"
+
+        echo ""
+        echo "[ Optional ]"
+        if [ -n "${SLACK_WEBHOOK_URL}" ]; then
+          echo "  PASS  SLACK_WEBHOOK_URL"
+        else
+          echo "  INFO  SLACK_WEBHOOK_URL not set (Slack notifications disabled)"
+        fi
+        if [ -n "${GITLAB_TOKEN}" ]; then
+          echo "  PASS  GITLAB_TOKEN"
+        else
+          echo "  INFO  GITLAB_TOKEN not set (auto issue creation disabled)"
+        fi
+
+        if [ "$MISSING" -gt 0 ]; then
+          echo "  -> $MISSING variable(s) missing (required for production monitoring)"
+        else
+          echo "  -> All production variables configured"
+        fi

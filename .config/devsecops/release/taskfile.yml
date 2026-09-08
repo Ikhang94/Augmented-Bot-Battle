@@ -1,0 +1,167 @@
+# https://taskfile.dev
+version: "3"
+
+vars:
+  # Define variables for the Taskfile, including project name, directory, and any flags or icons used in tasks
+  PROJECT NAME: t-esp-800-project-71802-par_augmentedbotbattle
+  CI_PROJECT_DIR: .
+  TASK_FLAGS: '{{.TASK_FLAGS | default ""}}'
+  TASK_SEPARATOR: "\n====================================================================================================\n"
+
+tasks:
+  release:dev:
+    desc: "Release for dev environment (creates -dev and version-dev tags)"
+    cmds:
+      - cmd: |
+          if [ ! -f VERSION ]; then
+            echo "0.1.0" > VERSION
+          fi
+          CURRENT_VERSION=$(cat VERSION)
+          export CURRENT_VERSION
+          echo "VERSION: $CURRENT_VERSION"
+
+          BRANCH="${CI_COMMIT_BRANCH:-${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME:-$(git branch --show-current)}}"
+          CLEAN_BRANCH_NAME=$(echo "${BRANCH}" | sed 's/\//-/g' | sed 's/[^a-zA-Z0-9._-]//g')
+
+          REGISTRY_NAME="${AZURE_REGISTRY_NAME:-$AZURE_REGISTRY_USERNAME}"
+          IMAGE_REPO="augmentedbotbattle"
+          SOURCE_IMAGE_TAG="${CI_COMMIT_TAG:+latest}"
+          SOURCE_IMAGE_TAG="${SOURCE_IMAGE_TAG:-${CI_COMMIT_SHORT_SHA}}"
+
+          echo "Creating dev release tags..."
+          echo "Registry: $REGISTRY_NAME"
+          echo "Image: $IMAGE_REPO"
+          echo "Source tag: $SOURCE_IMAGE_TAG"
+
+          # Check source image exists
+          az acr repository show-tags \
+            --name "$REGISTRY_NAME" \
+            --repository "$IMAGE_REPO" \
+            --output tsv \
+             | grep -q "^${SOURCE_IMAGE_TAG}$" \
+             || { echo "Source tag ${SOURCE_IMAGE_TAG} not found in ACR"; exit 1; }
+
+          # Create 'dev' tag
+          echo "Creating tag: dev"
+          az acr import \
+            --name "$REGISTRY_NAME" \
+            --source "${REGISTRY_NAME}.azurecr.io/${IMAGE_REPO}:${SOURCE_IMAGE_TAG}" \
+            --image "${IMAGE_REPO}:dev" \
+            --force
+
+          # Create version-dev tag (e.g., 0.1.8-dev)
+          echo "Creating tag: ${CURRENT_VERSION}-dev"
+          az acr import \
+            --name "$REGISTRY_NAME" \
+            --source "${REGISTRY_NAME}.azurecr.io/${IMAGE_REPO}:${SOURCE_IMAGE_TAG}" \
+            --image "${IMAGE_REPO}:${CURRENT_VERSION}-dev" \
+            --force
+
+          echo "Dev release tags created successfully"
+          echo "Listing tags in ACR for verification..."
+          az acr repository show-tags \
+            --name "$REGISTRY_NAME" \
+            --repository "$IMAGE_REPO" \
+            --output table
+
+  release:prod:
+    desc: "Release for prod environment (creates -prod and version-prod tags)"
+    cmds:
+      - cmd: |
+          if [ ! -f VERSION ]; then
+            echo "0.1.0" > VERSION
+          fi
+          CURRENT_VERSION=$(cat VERSION)
+          export CURRENT_VERSION
+          echo "VERSION: $CURRENT_VERSION"
+
+          REGISTRY_NAME="${AZURE_REGISTRY_NAME:-$AZURE_REGISTRY_USERNAME}"
+          IMAGE_REPO="augmentedbotbattle"
+          SOURCE_IMAGE_TAG="${CI_COMMIT_TAG:+latest}"
+          SOURCE_IMAGE_TAG="${SOURCE_IMAGE_TAG:-${CI_COMMIT_SHORT_SHA}}"
+
+          echo "Creating prod release tags..."
+          echo "Registry: $REGISTRY_NAME"
+          echo "Image: $IMAGE_REPO"
+          echo "Source tag: $SOURCE_IMAGE_TAG"
+
+          # Check source image exists
+          az acr repository show-tags \
+            --name "$REGISTRY_NAME" \
+            --repository "$IMAGE_REPO" \
+            --output tsv \
+             | grep -q "^${SOURCE_IMAGE_TAG}$" \
+             || { echo "Source tag ${SOURCE_IMAGE_TAG} not found in ACR"; exit 1; }
+
+          # Create 'prod' tag
+          echo "Creating tag: prod"
+          az acr import \
+            --name "$REGISTRY_NAME" \
+            --source "${REGISTRY_NAME}.azurecr.io/${IMAGE_REPO}:${SOURCE_IMAGE_TAG}" \
+            --image "${IMAGE_REPO}:prod" \
+            --force
+
+          # Create version-prod tag (e.g., 0.1.8-prod)
+          echo "Creating tag: ${CURRENT_VERSION}-prod"
+          az acr import \
+            --name "$REGISTRY_NAME" \
+            --source "${REGISTRY_NAME}.azurecr.io/${IMAGE_REPO}:${SOURCE_IMAGE_TAG}" \
+            --image "${IMAGE_REPO}:${CURRENT_VERSION}-prod" \
+            --force
+
+          echo "Prod release tags created successfully"
+          echo "Listing tags in ACR for verification..."
+          az acr repository show-tags \
+            --name "$REGISTRY_NAME" \
+            --repository "$IMAGE_REPO" \
+            --output table
+
+  version:bump:
+    desc: Bump version on current branch
+    cmds:
+      - cmd: |
+          if [ ! -f VERSION ]; then
+            echo "0.1.0" > VERSION
+          fi
+          CURRENT=$(cat VERSION)
+          # Increment patch version
+          IFS='.' read -r major minor patch <<< "$CURRENT"
+          new_patch=$((patch + 1))
+          NEW_VERSION="$major.$minor.$new_patch"
+          echo "$NEW_VERSION" > VERSION
+          git add VERSION
+          git commit -m "build: bump version $CURRENT → $NEW_VERSION"
+          BRANCH="${CI_COMMIT_BRANCH:-${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME:-$(git branch --show-current)}}"
+          if [ -z "$BRANCH" ]; then
+            echo "ERROR: cannot determine branch from CI_COMMIT_BRANCH, CI_MERGE_REQUEST_SOURCE_BRANCH_NAME, or git."
+            exit 1
+          fi
+          if [ -n "$GITLAB_TOKEN" ]; then
+            git remote set-url origin "https://oauth2:${GITLAB_TOKEN}@gitlab.com/${CI_PROJECT_PATH}.git"
+          elif [ -n "$CI_JOB_TOKEN" ]; then
+            git remote set-url origin "https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/${CI_PROJECT_PATH}.git"
+          else
+            echo "ERROR: no GITLAB_TOKEN or CI_JOB_TOKEN available"
+            exit 1
+          fi
+          echo "GITLAB_TOKEN set: ${GITLAB_TOKEN:+yes}"
+          echo "CI_JOB_TOKEN set: ${CI_JOB_TOKEN:+yes}"
+          git remote -v
+          # Use the ci.skip push option (push-scoped, NOT stored in the commit
+          # message) so the bump push does not re-trigger push/MR pipelines and
+          # does not taint the commit for later staging/production tag pipelines.
+          git push -o ci.skip origin HEAD:"$BRANCH"
+
+          # Fetch latest tags from remote to ensure we have the most current list
+          git fetch origin --tags --force
+
+          # Check if tag already exists and delete it if so
+          if git rev-parse "$NEW_VERSION" >/dev/null 2>&1; then
+            echo "Tag $NEW_VERSION already exists locally. Deleting..."
+            git tag -d "$NEW_VERSION"
+            git push origin :refs/tags/"$NEW_VERSION" || echo "Tag not found on remote, continuing..."
+          fi
+
+          echo "Creating tag $NEW_VERSION..."
+          git tag "$NEW_VERSION"
+          git push origin "$NEW_VERSION"

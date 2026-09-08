@@ -1,0 +1,50 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Build artifacts - critical for preventing NuGet cache corruption
+**/obj
+**/bin
+**/.vs
+*.log
+
+# CI/CD
+.gitlab-ci.yml
+.config/gitlab
+.github
+
+# Documentation
+docs/
+README.md
+*.md
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Dev config
+.env
+.env.local
+
+# Reports
+reports/
+megalinter-reports/
+coverage/
+
+# Node modules (if any)
+node_modules/
+
+# Unity specific
+Unity/ABB/Library
+Unity/ABB/Temp
+Unity/ABB/Obj
+Unity/ABB/Logs
+Unity/ABB/UserSettings
+Unity/ABB/.vs
+
+# Misc
+.DS_Store
+*.tmp
+Thumbs.db

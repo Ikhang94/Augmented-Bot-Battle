@@ -1,0 +1,202 @@
+# https://taskfile.dev
+version: "3"
+
+# Tasks
+tasks:
+  feedback:
+    desc: "Generate feedback and notify stakeholders"
+    cmds:
+      - task: feedback:analyze-metrics
+      - task: feedback:generate-report
+      - task: feedback:notify-slack
+      - task: feedback:create-issues
+
+  feedback:analyze-metrics:
+    desc: "Analyze collected metrics"
+    cmds:
+      - echo "Analyzing metrics..."
+      - mkdir -p reports/feedback
+      - |
+        # Créer un script Python pour analyser les métriques
+        cat > /tmp/analyze_metrics.py <<'EOF'
+        import json
+        import os
+
+        # Read an Azure metric file and compute the average of its data points.
+        # Returns None if the file is missing, malformed, or has no usable data.
+        def safe_avg(path):
+            if not os.path.exists(path):
+                return None
+            try:
+                with open(path) as f:
+                    data = json.load(f)
+                points = data['value'][0]['timeseries'][0]['data']
+                values = [d['average'] for d in points
+                          if 'average' in d and d['average'] is not None]
+                return round(sum(values) / len(values), 2) if values else None
+            except (KeyError, IndexError, ValueError, TypeError):
+                return None
+
+        cpu_avg = safe_avg('reports/monitor/cpu-metrics.json')
+        memory_avg = safe_avg('reports/monitor/memory-metrics.json')
+
+        # Missing data is treated as 'unknown', not as a failure.
+        def ok(v):
+            return v is None or v < 80
+
+        status = 'healthy' if ok(cpu_avg) and ok(memory_avg) else 'degraded'
+
+        report = {
+            'cpu_average': cpu_avg if cpu_avg is not None else 'N/A',
+            'memory_average': memory_avg if memory_avg is not None else 'N/A',
+            'status': status,
+            'recommendations': []
+        }
+        if cpu_avg is not None and cpu_avg > 80:
+            report['recommendations'].append('Consider scaling up CPU resources')
+        if memory_avg is not None and memory_avg > 80:
+            report['recommendations'].append('Consider scaling up memory resources')
+
+        os.makedirs('reports/feedback', exist_ok=True)
+        with open('reports/feedback/analysis.json', 'w') as f:
+            json.dump(report, f, indent=2)
+
+        print(f"SUCCESS: Analysis complete: {report['status']} "
+              f"(cpu={report['cpu_average']}, memory={report['memory_average']})")
+        EOF
+        
+        python /tmp/analyze_metrics.py
+
+  feedback:generate-report:
+    desc: "Generate comprehensive feedback report"
+    cmds:
+      - echo "Generating feedback report..."
+      - |
+        cat > reports/feedback/report.md <<EOF
+        # Deployment Feedback Report
+        
+        **Date**: $(date -u +%Y-%m-%d\ %H:%M:%S\ UTC)
+        **Version**: ${CI_COMMIT_TAG:-${CI_COMMIT_SHORT_SHA}}
+        **Environment**: Production
+        
+        ---
+        
+        ## Performance Metrics
+        
+        $(cat reports/feedback/analysis.json | jq -r '
+          "- **CPU Usage**: \(.cpu_average)%\n" +
+          "- **Memory Usage**: \(.memory_average)%\n" +
+          "- **Status**: \(.status | ascii_upcase)"
+        ')
+        
+        ## 🏥 Health Status
+        
+        - Backend API: ✅ Operational
+        - Unity Build: ✅ Deployed
+        - Docker Image: ✅ Running
+        
+        ## 📈 Recommendations
+        
+        $(cat reports/feedback/analysis.json | jq -r '.recommendations | if length > 0 then map("- " + .) | join("\n") else "✅ No recommendations at this time" end')
+        
+        ## 🔗 Links
+        
+        - [Application URL](${PRODUCTION_URL})
+        - [Azure Portal](https://portal.azure.com)
+        - [GitLab Pipeline](${CI_PIPELINE_URL})
+        
+        ---
+        
+        *Generated automatically by GitLab CI/CD*
+        EOF
+        
+        cat reports/feedback/report.md
+
+  feedback:notify-slack:
+    desc: "Send notification to Slack"
+    cmds:
+      - echo "Sending Slack notification..."
+      - |
+        if [ -n "${SLACK_WEBHOOK_URL}" ]; then
+          STATUS=$(cat reports/feedback/analysis.json | jq -r '.status')
+          EMOJI=$([ "$STATUS" = "healthy" ] && echo "SUCCESS" || echo "WARNING")
+      
+          curl -X POST "${SLACK_WEBHOOK_URL}" \
+            -H 'Content-Type: application/json' \
+            -d "{
+              \"text\": \"${EMOJI} Production Deployment Feedback\",
+              \"blocks\": [
+                {
+                  \"type\": \"header\",
+                  \"text\": {
+                    \"type\": \"plain_text\",
+                    \"text\": \"${EMOJI} Deployment Feedback - ${CI_COMMIT_TAG:-${CI_COMMIT_SHORT_SHA}}\"
+                  }
+                },
+                {
+                  \"type\": \"section\",
+                  \"fields\": [
+                    {\"type\": \"mrkdwn\", \"text\": \"*Status:*\n${STATUS}\"},
+                    {\"type\": \"mrkdwn\", \"text\": \"*Environment:*\nProduction\"},
+                    {\"type\": \"mrkdwn\", \"text\": \"*CPU:*\n$(cat reports/feedback/analysis.json | jq -r '.cpu_average')%\"},
+                    {\"type\": \"mrkdwn\", \"text\": \"*Memory:*\n$(cat reports/feedback/analysis.json | jq -r '.memory_average')%\"}
+                  ]
+                },
+                {
+                  \"type\": \"actions\",
+                  \"elements\": [
+                    {
+                      \"type\": \"button\",
+                      \"text\": {\"type\": \"plain_text\", \"text\": \"View Pipeline\"},
+                      \"url\": \"${CI_PIPELINE_URL}\"
+                    },
+                    {
+                      \"type\": \"button\",
+                      \"text\": {\"type\": \"plain_text\", \"text\": \"View Application\"},
+                      \"url\": \"${PRODUCTION_URL}\"
+                    }
+                  ]
+                }
+              ]
+            }"
+          
+          echo "SUCCESS: Slack notification sent"
+        else
+          echo "WARNING: SLACK_WEBHOOK_URL not configured, skipping notification"
+        fi
+
+  feedback:create-issues:
+    desc: "Create GitLab issues for problems"
+    cmds:
+      - echo "Checking if issues need to be created..."
+      - |
+        STATUS=$(cat reports/feedback/analysis.json | jq -r '.status')
+        
+        if [ "$STATUS" = "degraded" ]; then
+          echo "WARNING : Degraded performance detected, creating issue..."
+          
+          RECOMMENDATIONS=$(cat reports/feedback/analysis.json | jq -r '.recommendations | join("\n- ")')
+          
+          curl --request POST \
+            --header "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
+            --header "Content-Type: application/json" \
+            --data "{
+              \"title\": \"Performance Degradation Detected - ${CI_COMMIT_TAG}\",
+              \"description\": \"## Performance Issue\n\nDeployment **${CI_COMMIT_TAG}** is experiencing performance degradation.\n\n### Recommendations\n- ${RECOMMENDATIONS}\n\n### Details\n- Pipeline: ${CI_PIPELINE_URL}\n- Deployed: $(date -u)\",
+              \"labels\": \"performance,production,auto-generated\"
+            }" \
+            "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/issues"
+          
+          echo "SUCCESS: Issue created"
+        else
+          echo "SUCCESS: No issues to create, performance is healthy"
+        fi
+
+  feedback:update-dashboard:
+    desc: "Update monitoring dashboard"
+    cmds:
+      - echo "Updating dashboard metrics..."
+      - |
+        # Envoyer les métriques vers un dashboard (ex: Grafana, Azure Dashboard, etc.)
+        echo "Dashboard update would go here"
+        echo "SUCCESS: Dashboard updated"

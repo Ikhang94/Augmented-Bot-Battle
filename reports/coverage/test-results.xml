@@ -1,0 +1,210 @@
+<testsuites>
+  <testsuite name="BackendESP.Tests.dll" tests="122" skipped="0" failures="0" errors="0" time="14.671377999999999" timestamp="2026-05-23T03:49:04" hostname="degameur" id="0" package="BackendESP.Tests.dll">
+    <properties />
+    <testcase classname="BackendESP.Tests.UnitTest1" name="Test1" time="0.0119099" />
+    <testcase classname="BackendESP.Tests.Models.GamesessionTests" name="Gamesession_Can_Set_And_Get_Navigation_Properties" time="0.0676152" />
+    <testcase classname="BackendESP.Tests.Models.PlayersRobotTests" name="PlayersRobot_Can_Set_And_Get_Scalar_Properties" time="0.0911271" />
+    <testcase classname="BackendESP.Tests.Models.PlayersRobotTests" name="PlayersRobot_Allows_Null_For_Nullable_Properties" time="0.0041562" />
+    <testcase classname="BackendESP.Tests.Models.PlayerTests" name="Player_Collections_Can_Add_Items" time="0.0948849" />
+    <testcase classname="BackendESP.Tests.Models.PlayersRobotTests" name="PlayersRobot_Can_Set_And_Get_Navigation_Properties" time="0.0008175" />
+    <testcase classname="BackendESP.Tests.Models.RobotTests" name="Robot_Can_Set_And_Get_Scalar_Properties" time="0.0997855" />
+    <testcase classname="BackendESP.Tests.Models.PlayerTests" name="Player_Can_Set_And_Get_Scalar_Properties" time="0.0053921" />
+    <testcase classname="BackendESP.Tests.Models.PlayerTests" name="Player_Collections_Are_Initialized_By_Default" time="0.0009808" />
+    <testcase classname="BackendESP.Tests.Models.RobotTests" name="Robot_Collections_Can_Add_Items" time="0.0018961" />
+    <testcase classname="BackendESP.Tests.Models.RobotTests" name="Robot_Collections_Are_Initialized_By_Default" time="0.0006908" />
+    <testcase classname="BackendESP.Tests.Models.GamesessionTests" name="Gamesession_Can_Set_And_Get_Scalar_Properties" time="0.0412087" />
+    <testcase classname="BackendESP.Tests.Models.GamesessionTests" name="Gamesession_Allows_Null_For_Nullable_Properties" time="0.0031353" />
+    <testcase classname="BackendESP.Tests.Models.MissingModelsTests" name="PlayerDTO_Properties_AreSetCorrectly" time="0.2097919" />
+    <testcase classname="BackendESP.Tests.Models.MissingModelsTests" name="Leaderboard_Properties_AreSetCorrectly" time="0.0132286" />
+    <testcase classname="BackendESP.Tests.Models.MissingModelsTests" name="RobotDTO_Properties_AreSetCorrectly" time="0.0007664" />
+    <testcase classname="BackendESP.Tests.Controllers.RobotControllerMissingTests" name="UpdateRobot_CallsUpdateRobotAsync_AndReturnsResult" time="0.4542136" />
+    <testcase classname="BackendESP.Tests.Controllers.RobotControllerMissingTests" name="DeleteRobot_CallsDeleteRobotAsync_AndReturnsResult" time="0.0056175" />
+    <testcase classname="BackendESP.Tests.Controllers.GameSessionControllerTests" name="DeleteGameSessionAsync_Delegates_To_DataLayer_And_Returns_IResult" time="0.4692595" />
+    <testcase classname="BackendESP.Tests.Controllers.LeaderboardControllerTests" name="GetLeaderboard_Delegates_To_DataLayer_And_Returns_IResult" time="0.4693956" />
+    <testcase classname="BackendESP.Tests.Controllers.RobotControllerTests" name="GetRobotAsync_Delegates_To_DataLayer_And_Returns_IResult" time="0.3729518" />
+    <testcase classname="BackendESP.Tests.Controllers.LeaderboardControllerTests" name="SwapLeaderboard_WithMoreThanTwoPlayers_ReturnsBadRequest" time="0.0086892" />
+    <testcase classname="BackendESP.Tests.Controllers.GameSessionControllerTests" name="GetGameSessionsOfPlayerAsync_Delegates_To_DataLayer_And_Returns_IResult" time="0.0117106" />
+    <testcase classname="BackendESP.Tests.Controllers.RobotControllerTests" name="CreateRobot_Delegates_To_DataLayer_And_Returns_IResult" time="0.0146046" />
+    <testcase classname="BackendESP.Tests.Controllers.GameSessionControllerTests" name="GetAllGameSessionsAsync_Delegates_To_DataLayer_And_Returns_IResult" time="0.0066841" />
+    <testcase classname="BackendESP.Tests.Controllers.LeaderboardControllerTests" name="SwapLeaderboard_WithTwoPlayers_Delegates_To_DataLayer_And_Returns_IResult" time="0.0134661" />
+    <testcase classname="BackendESP.Tests.Controllers.LeaderboardControllerTests" name="SwapLeaderboard_WithLessThanTwoPlayers_ReturnsBadRequest" time="0.0020521" />
+    <testcase classname="BackendESP.Tests.Controllers.GameSessionControllerTests" name="GetGameSessionAsync_Delegates_To_DataLayer_And_Returns_IResult" time="0.0072175" />
+    <testcase classname="BackendESP.Tests.Controllers.RobotControllerTests" name="UpdateRobotAsync_Delegates_To_DataLayer_And_Returns_IResult" time="0.0123995" />
+    <testcase classname="BackendESP.Tests.Controllers.RobotControllerTests" name="GetAllRobots_Delegates_To_DataLayer_And_Returns_IResult" time="0.0054614" />
+    <testcase classname="BackendESP.Tests.Controllers.LeaderboardControllerTests" name="CreateLeaderboard_Delegates_To_DataLayer_And_Returns_IResult" time="0.0271715" />
+    <testcase classname="BackendESP.Tests.Controllers.GameSessionControllerTests" name="UpdateGameSessionAsync_Delegates_To_DataLayer_And_Returns_IResult" time="0.0272024" />
+    <testcase classname="BackendESP.Tests.Controllers.RobotControllerTests" name="DeleteRobotAsync_Delegates_To_DataLayer_And_Returns_IResult" time="0.0227241" />
+    <testcase classname="BackendESP.Tests.Controllers.GameSessionControllerTests" name="CreateGameSessionAsync_Delegates_To_DataLayer_And_Returns_IResult" time="0.0102547" />
+    <testcase classname="BackendESP.Tests.Services.TokenServiceTests" name="GenerateToken_TokenContainsCorrectClaims" time="0.6190856" />
+    <testcase classname="BackendESP.Tests.Services.TokenServiceTests" name="GenerateToken_ValidPlayer_ReturnsJwtToken" time="0.0314634" />
+    <testcase classname="BackendESP.Tests.Services.TokenServiceTests" name="GenerateToken_TokenExpiresIn1Hour" time="0.0082163" />
+    <testcase classname="BackendESP.Tests.Services.TokenServiceTests" name="GenerateToken_CallsPlayerDataLayer" time="0.0065569" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="DeleteRobotAsync_DbThrows_Returns500" time="0.6907300" />
+    <testcase classname="BackendESP.Tests.Data.LeaderboardDataTests" name="CreateLeaderboard_DbThrows_Returns500" time="0.7206524" />
+    <testcase classname="BackendESP.Tests.Models.PostgresDbContextTests" name="Model_Maps_Gamesessions_Table_Columns_And_FKs" time="1.6419061" />
+    <testcase classname="BackendESP.Tests.Models.PostgresDbContextTests" name="Model_Maps_Tables_And_Columns_Robot" time="0.1065541" />
+    <testcase classname="BackendESP.Tests.Models.PostgresDbContextTests" name="Model_Maps_PlayersRobots_Table_And_FKs" time="0.0038328" />
+    <testcase classname="BackendESP.Tests.Models.PostgresDbContextTests" name="Model_Maps_Tables_And_Columns_Leaderboard_And_FK" time="0.0075135" />
+    <testcase classname="BackendESP.Tests.Models.PostgresDbContextTests" name="Model_Maps_Tables_And_Columns_Player" time="0.0017795" />
+    <testcase classname="BackendESP.Tests.Models.PostgresDbContextTests" name="DbSets_Are_Available" time="0.0014243" />
+    <testcase classname="BackendESP.Tests.Data.LeaderboardDataTests" name="CreateLeaderboard_PlayerAlreadyExists_Returns400" time="1.2951025" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="DeleteGameSessionAsync_SessionExists_Returns200" time="2.0476312" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="CreateGameSessionAsync_DbThrows_Returns500" time="0.0115552" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="UpdateGameSessionAsync_DbThrows_Returns500" time="0.0060005" />
+    <testcase classname="BackendESP.Tests.Data.LeaderboardDataTests" name="GetLeaderboard_Empty_Returns200" time="0.1350258" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="UpdateRobotAsync_RobotNotFound_Returns404" time="1.4623067" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="GetGameSessionAsync_SessionNotFound_Returns500" time="0.0874801" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="DeleteGameSessionAsync_DbThrows_Returns500" time="0.0017808" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerAsyncByEmail_PlayerExists_Returns200" time="2.1679132" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="UpdatePlayerAsync_DbThrows_Returns500" time="0.0065908" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="DeletePlayerAsync_DbThrows_Returns500" time="0.0055857" />
+    <testcase classname="BackendESP.Tests.Data.LeaderboardDataTests" name="SwapLeaderboard_BothPlayersExist_Returns200" time="0.0299621" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="GetGameSessionsOfPlayer_NoSessions_Returns200" time="0.0345818" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetAllPlayersAsync_NoPlayers_Returns200" time="0.0178111" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="GetGameSessionsOfPlayer_AsHostPlayer_Returns200" time="0.0091863" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="DeleteRobotAsync_RobotExists_Returns200" time="0.0478162" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="CreatePlayerAsync_NullEmailAndPassword_Returns404" time="0.0036939" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="GetGameSessionAsync_SessionExists_Returns200" time="0.0043130" />
+    <testcase classname="BackendESP.Tests.Data.LeaderboardDataTests" name="GetLeaderboard_WithEntries_Returns200" time="0.0232171" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="GetAllRobotsAsync_DbThrows_Returns500" time="0.0086026" />
+    <testcase classname="BackendESP.Tests.Data.LeaderboardDataTests" name="SwapLeaderboard_DbThrows_Returns500" time="0.0051068" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="GetAllGameSessionsAsync_NoSessions_Returns200" time="0.0365782" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="GetAllGameSessionsAsync_WithSessions_Returns200" time="0.0042369" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerRobotsAsync_PlayerNotFound_Returns404" time="0.0687026" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="GetRobotAsync_RobotNotFound_Returns404" time="0.0621526" />
+    <testcase classname="BackendESP.Tests.Data.LeaderboardDataTests" name="SwapLeaderboard_Player2NotFound_Returns400" time="0.0628431" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="CreatePlayerAsync_NullUsername_Returns404" time="0.0028330" />
+    <testcase classname="BackendESP.Tests.Data.LeaderboardDataTests" name="GetLeaderboard_DbThrows_Returns500" time="0.0033039" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="UpdateGameSessionAsync_SessionExists_Returns200" time="0.0309500" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="PlayerAcquireRobotAsync_PlayerNotFound_Returns404" time="0.0081288" />
+    <testcase classname="BackendESP.Tests.Data.LeaderboardDataTests" name="SwapLeaderboard_Player1NotFound_Returns400" time="0.0065191" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="PlayerAcquireRobotAsync_RobotNotFound_Returns404" time="0.0041085" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="GetAllRobotsAsync_WithRobots_Returns200" time="0.0159474" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="UpdateRobotAsync_DbThrows_Returns500" time="0.0026587" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="DeleteRobotAsync_RobotNotFound_Returns404" time="0.0034218" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="DeleteGameSessionAsync_SessionNotFound_Returns404" time="0.0203846" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerAsyncByEmailToken_PlayerExists_ReturnsPlayerDTO" time="0.0102586" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="GetAllRobotsAsync_NoRobots_Returns200" time="0.0025907" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="GetGameSessionAsync_DbThrows_Returns500" time="0.0025469" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="GetGameSessionsOfPlayer_WithSessions_Returns200" time="0.0037979" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="GetAllGameSessionsAsync_DbThrows_Returns500" time="0.0043949" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="UpdateGameSessionAsync_SessionNotFound_Returns404" time="0.0060677" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="CreateRobotAsync_AlreadyExists_Returns409Or400" time="0.0216529" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="GetGameSessionsOfPlayer_AsClientPlayer_Returns200" time="0.0048437" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="PlayerLogin_ValidCredentials_Returns200" time="0.0222744" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="CreatePlayerAsync_DbThrows_Returns500" time="0.0036798" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="UpdateRobotAsync_RobotExists_Returns200" time="0.0079361" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetAllPlayersAsync_WithPlayers_Returns200" time="0.0054190" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="CreateGameSessionAsync_ValidSession_Returns200" time="0.0359401" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="CreateRobotAsync_ValidRobot_Returns200" time="0.0278898" />
+    <testcase classname="BackendESP.Tests.Data.LeaderboardDataTests" name="CreateLeaderboard_NewPlayer_Returns200" time="0.0736432" />
+    <testcase classname="BackendESP.Tests.Data.GameSessionDataTests" name="GetGameSessionsOfPlayer_DbThrows_Returns500" time="0.0028644" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="CreateRobotAsync_DbThrows_Returns500" time="0.0028420" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="CreatePlayerAsync_AlreadyExists_Returns200" time="0.0308596" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="GetRobotAsync_DbThrows_Returns500" time="0.0022241" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="CreatePlayerAsync_ValidPlayer_Returns200" time="0.0047019" />
+    <testcase classname="BackendESP.Tests.Data.RobotDataTests" name="GetRobotAsync_RobotExists_Returns200" time="0.0042141" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerAsyncByEmail_DbThrows_Returns500" time="0.0052291" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerAsync_PlayerNotFound_Returns404" time="0.0066507" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerAsyncByEmailToken_PlayerNotFound_ReturnsNull" time="0.0029298" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="PlayerLogin_InvalidPassword_Returns401" time="0.0046452" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="PlayerAcquireRobotAsync_DbThrows_Returns500" time="0.0030865" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerRobotsAsync_PlayerWithoutRobots_Returns200" time="0.0220599" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetAllPlayersAsync_DbThrows_Returns500" time="0.0041106" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerAsync_DbThrows_Returns500" time="0.0026483" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerAsyncByEmail_PlayerNotFound_Returns404" time="0.0033429" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="PlayerAcquireRobotAsync_ValidPlayerAndRobot_Returns200" time="0.0688218" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="PlayerLogin_UserNotFound_Returns401" time="0.0032817" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerAsyncByEmailToken_DbThrows_ReturnsNull" time="0.0021055" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="DeletePlayerAsync_PlayerExists_Returns200" time="0.0030907" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="DeletePlayerAsync_PlayerNotFound_Returns404" time="0.0608836" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerRobotsAsync_PlayerWithRobots_Returns200" time="0.0051853" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerRobotsAsync_DbThrows_Returns500" time="0.0024993" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="GetPlayerAsync_PlayerExists_Returns200" time="0.0027090" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="UpdatePlayerAsync_PlayerExists_Returns200" time="0.0122752" />
+    <testcase classname="BackendESP.Tests.Data.PlayerDataTests" name="UpdatePlayerAsync_PlayerNotFound_Returns400" time="0.0029708" />
+    <system-out>
+Test Framework Informational Messages:
+[xUnit.net 00:00:00.01] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 9.0.15)
+[xUnit.net 00:00:00.58]   Discovering: BackendESP.Tests
+[xUnit.net 00:00:00.73]   Discovered:  BackendESP.Tests
+[xUnit.net 00:00:00.84]   Starting:    BackendESP.Tests
+     Warning:
+     The component "Fluent Assertions" is governed by the rules defined in the Xceed License Agreement and
+     the Xceed Fluent Assertions Community License. You may use Fluent Assertions free of charge for
+     non-commercial use only. An active subscription is required to use Fluent Assertions for commercial use.
+     Please contact Xceed Sales mailto:sales@xceed.com to acquire a subscription at a very low cost.
+     A paid commercial license supports the development and continued increasing support of
+     Fluent Assertions users under both commercial and community licenses. Help us
+     keep Fluent Assertions at the forefront of unit testing.
+     For more information, visit https://xceed.com/products/unit-testing/fluent-assertions/
+System.ObjectDisposedException: Cannot access a disposed context instance. A common cause of this error is disposing a context instance that was resolved from dependency injection and then later trying to use the same context instance elsewhere in your application. This may occur if you are calling 'Dispose' on the context instance, or wrapping it in a using statement. If you are using dependency injection, you should let the dependency injection container take care of disposing context instances.
+Object name: 'PostgresDbContext'.
+   at Microsoft.EntityFrameworkCore.DbContext.CheckDisposed()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_Finder()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.FindAsync(Object[] keyValues)
+   at BackendESP.Data.LeaderboardData.CreateLeaderboard(Int32 playerId) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Data/LeaderboardData.cs:line 46
+System.ObjectDisposedException: Cannot access a disposed context instance. A common cause of this error is disposing a context instance that was resolved from dependency injection and then later trying to use the same context instance elsewhere in your application. This may occur if you are calling 'Dispose' on the context instance, or wrapping it in a using statement. If you are using dependency injection, you should let the dependency injection container take care of disposing context instances.
+Object name: 'PostgresDbContext'.
+   at Microsoft.EntityFrameworkCore.DbContext.CheckDisposed()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Collections.Generic.IAsyncEnumerable&lt;TEntity&gt;.GetAsyncEnumerator(CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable`1.GetAsyncEnumerator()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at BackendESP.Data.RobotData.GetAllRobotsAsync() in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Data/RobotData.cs:line 24
+System.ObjectDisposedException: Cannot access a disposed context instance. A common cause of this error is disposing a context instance that was resolved from dependency injection and then later trying to use the same context instance elsewhere in your application. This may occur if you are calling 'Dispose' on the context instance, or wrapping it in a using statement. If you are using dependency injection, you should let the dependency injection container take care of disposing context instances.
+Object name: 'PostgresDbContext'.
+   at Microsoft.EntityFrameworkCore.DbContext.CheckDisposed()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_Finder()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.FindAsync(Object[] keyValues)
+   at BackendESP.Data.LeaderboardData.SwapLeaderboard(LeaderboardDTO player1, LeaderboardDTO player2) in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Data/LeaderboardData.cs:line 72
+System.ObjectDisposedException: Cannot access a disposed context instance. A common cause of this error is disposing a context instance that was resolved from dependency injection and then later trying to use the same context instance elsewhere in your application. This may occur if you are calling 'Dispose' on the context instance, or wrapping it in a using statement. If you are using dependency injection, you should let the dependency injection container take care of disposing context instances.
+Object name: 'PostgresDbContext'.
+   at Microsoft.EntityFrameworkCore.DbContext.CheckDisposed()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.OrderBy[TSource,TKey](IQueryable`1 source, Expression`1 keySelector)
+   at BackendESP.Data.LeaderboardData.GetLeaderboard() in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Data/LeaderboardData.cs:line 21
+System.ObjectDisposedException: Cannot access a disposed context instance. A common cause of this error is disposing a context instance that was resolved from dependency injection and then later trying to use the same context instance elsewhere in your application. This may occur if you are calling 'Dispose' on the context instance, or wrapping it in a using statement. If you are using dependency injection, you should let the dependency injection container take care of disposing context instances.
+Object name: 'PostgresDbContext'.
+   at Microsoft.EntityFrameworkCore.DbContext.CheckDisposed()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Collections.Generic.IAsyncEnumerable&lt;TEntity&gt;.GetAsyncEnumerator(CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable`1.GetAsyncEnumerator()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at BackendESP.Data.GameSessionData.GetAllGameSessionsAsync() in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Data/GameSessionData.cs:line 21
+System.ObjectDisposedException: Cannot access a disposed context instance. A common cause of this error is disposing a context instance that was resolved from dependency injection and then later trying to use the same context instance elsewhere in your application. This may occur if you are calling 'Dispose' on the context instance, or wrapping it in a using statement. If you are using dependency injection, you should let the dependency injection container take care of disposing context instances.
+Object name: 'PostgresDbContext'.
+   at Microsoft.EntityFrameworkCore.DbContext.CheckDisposed()
+   at Microsoft.EntityFrameworkCore.DbContext.get_ContextServices()
+   at Microsoft.EntityFrameworkCore.DbContext.get_Model()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.CheckState()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityQueryable()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.System.Collections.Generic.IAsyncEnumerable&lt;TEntity&gt;.GetAsyncEnumerator(CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable`1.GetAsyncEnumerator()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at BackendESP.Data.PlayerData.GetAllPlayersAsync() in /mnt/c/Users/degdi/Documents/data_project/Epitech/t-esp-800-project-71802-par_augmentedbotbattle/project/Backend/BackendESP/Data/PlayerData.cs:line 23
+[xUnit.net 00:00:03.59]   Finished:    BackendESP.Tests
+</system-out>
+    <system-err></system-err>
+  </testsuite>
+</testsuites>

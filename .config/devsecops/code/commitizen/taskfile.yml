@@ -1,0 +1,115 @@
+---
+version: "3"
+
+vars:
+  COMMITIZEN_ENABLED: '{{.COMMITIZEN_ENABLED | default "true"}}'
+  COMMITIZEN_CONFIG: '{{.COMMITIZEN_CONFIG | default ".config/commitizen/cz.yaml"}}'
+  COMMITIZEN_COMMIT_OPTS: '{{.COMMITIZEN_COMMIT_OPTS | default ""}}'
+  COMMITIZEN_CHECK_OPTS: '{{.COMMITIZEN_CHECK_OPTS | default "--rev-range origin/main..HEAD"}}'
+  COMMITIZEN_BRANCH:
+    sh: |
+      if [ -n "$CI_COMMIT_REF_NAME" ]; then
+        echo "$CI_COMMIT_REF_NAME"
+      else
+        git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main"
+      fi
+  COMMITIZEN_DEFAULT_BRANCH: '{{.COMMITIZEN_DEFAULT_BRANCH | default "main"}}'
+  COMMITIZEN_BUMP_DRY_RUN: '{{.COMMITIZEN_BUMP_DRY_RUN | default "true"}}'
+  COMMITIZEN_BUMP_CHANGELOG: '{{.COMMITIZEN_BUMP_CHANGELOG | default "false"}}'
+
+
+tasks:
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # default — Interactive commit message
+  # ─────────────────────────────────────────────────────────────────────────
+  default:
+    interactive: true
+    desc: Create a commit with Commitizen (interactive).
+    cmds:
+      - cmd: echo "Starting Commitizen commit..."
+        silent: true
+      - "cz --config {{.COMMITIZEN_CONFIG}} {{.COMMITIZEN_COMMIT_OPTS}} commit {{.CLI_ARGS}}"
+      - cmd: echo 'Commit created.'
+        silent: true
+
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # check — Verify commit messages
+  # ─────────────────────────────────────────────────────────────────────────
+  check:
+    desc: Verify commit messages with Commitizen.
+    status:
+      - test "{{.COMMITIZEN_ENABLED}}" = "false"
+    cmds:
+      - cmd: echo "Checking commits from origin/{{.COMMITIZEN_DEFAULT_BRANCH}} to HEAD..."
+        silent: true
+      - |
+        if cz --config {{.COMMITIZEN_CONFIG}} check {{.COMMITIZEN_CHECK_OPTS}}; then
+          echo "All commits are valid!"
+        else
+          exit_code=$?
+          if [ $exit_code -eq 3 ]; then
+            echo " No commits found in the specified range."
+          else
+            echo "Commitizen check failed (exit code $exit_code)"
+            exit $exit_code
+          fi
+        fi
+
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # bump — Increment version based on commits
+  # ─────────────────────────────────────────────────────────────────────────
+  bump-version:
+    desc: Increment version based on commit history.
+    status:
+      - test "{{.COMMITIZEN_ENABLED}}" = "false"
+    cmds:
+      - cmd: echo "Bumping version (branch {{.COMMITIZEN_BRANCH}})..."
+        silent: true
+      - |
+        BUMP_DRY_FLAG=""
+        if [ "{{.COMMITIZEN_BUMP_DRY_RUN}}" = "true" ]; then
+          BUMP_DRY_FLAG="--dry-run"
+        fi
+
+        BUMP_TYPE_FLAG=""
+        if [ "{{.COMMITIZEN_BRANCH}}" != "{{.COMMITIZEN_DEFAULT_BRANCH}}" ]; then
+          BUMP_TYPE_FLAG="--prerelease beta"
+        fi
+
+        CHANGELOG_FLAG=""
+        if [ "{{.COMMITIZEN_BUMP_CHANGELOG}}" = "true" ]; then
+          CHANGELOG_FLAG="--changelog"
+        fi
+
+        echo "Options: $BUMP_DRY_FLAG $BUMP_TYPE_FLAG $CHANGELOG_FLAG"
+
+        if cz --config {{.COMMITIZEN_CONFIG}} \
+          bump \
+          $BUMP_DRY_FLAG \
+          $BUMP_TYPE_FLAG \
+          $CHANGELOG_FLAG \
+          --yes \
+          --check-consistency; then
+          echo "Version bump completed!"
+        else
+          exit_code=$?
+          if [ $exit_code -eq 3 ]; then
+            echo "Nothing to bump."
+          elif [ $exit_code -eq 21 ]; then
+            echo "No commits since last tag."
+          else
+            echo "Bump failed (exit code $exit_code)"
+            exit $exit_code
+          fi
+        fi
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # check-message — For git commit-msg hook
+  # ─────────────────────────────────────────────────────────────────────────
+  check-message:
+    desc: Check a commit message file (for commit-msg hook).
+    cmds:
+      - "cz --config {{.COMMITIZEN_CONFIG}} check --commit-msg-file {{.COMMIT_MSG_FILE}}"

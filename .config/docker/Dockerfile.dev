@@ -1,0 +1,81 @@
+FROM unityci/editor:ubuntu-6000.0.53f1-android-3.2.1 AS unity-builder
+
+
+
+# ==========================================
+# Stage 2: Build Backend
+# ==========================================
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS backend-builder
+
+WORKDIR /project
+
+# Copy backend source code
+COPY project/Backend/BackendESP/ ./Backend/BackendEsp/
+
+# Clean corrupted build artifacts before restore
+RUN rm -rf ./Backend/BackendEsp/obj ./Backend/BackendEsp/bin
+
+RUN dotnet restore ./Backend/BackendEsp/BackendESP.csproj
+
+# Copy source and build
+
+RUN dotnet publish ./Backend/BackendEsp/BackendESP.csproj \
+    -c Release \
+    -o /app/backend \
+    --no-restore \
+    --self-contained false
+
+# ==========================================
+# Stage 2: Final Runtime Image
+# ==========================================
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
+
+# install dependancies
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    libglu1-mesa xvfb libxcursor1 libxrandr2 libxi6 \
+    curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy artifacts
+# from backend builder because we need the published output, not the source
+COPY --from=backend-builder /app/backend ./backend
+# COPY --from=unity-builder /project/build/unity/ ./unity/
+
+# Unity – artefacts générés par le job build:unity
+COPY build/unity/ ./unity/
+
+# Make Unity executable
+RUN chmod +x ./unity/GameBuild 2>/dev/null || true
+
+# Environment
+ENV ASPNETCORE_URLS=http://+:80 \
+    ASPNETCORE_ENVIRONMENT=dev \
+    UNITY_BUILD_PATH=/app/unity
+
+EXPOSE 80
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD curl -f http://localhost/health || exit 1
+
+# Startup script
+RUN echo '#!/bin/bash\n\
+echo "Starting Augmented Bot Battle"\n\
+echo "Unity: ${UNITY_BUILD_PATH}"\n\
+echo "Backend: ${ASPNETCORE_URLS}"\n\
+cd /app/backend && exec dotnet BackendESP.dll' > /app/start.sh && \
+chmod +x /app/start.sh
+
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+
+LABEL org.opencontainers.image.created="${BUILD_DATE}" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.revision="${VCS_REF}"
+
+CMD ["/app/start.sh"]

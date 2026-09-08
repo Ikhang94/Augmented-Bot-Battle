@@ -1,0 +1,217 @@
+# Unity Build Taskfile
+version: '3'
+
+vars:
+  PROJECT_ROOT: '../../..'
+  TASK_UNITY_PROJECT_PATH: 'project/Unity/ABB'
+  TASK_UNITY_VERSION: '{{.ENV.UNITY_VERSION | default "2022.3.10f1"}}'
+  TASK_BUILD_TARGET: '{{.ENV.BUILD_TARGET | default "StandaloneLinux64"}}'
+  TASK_BUILD_PATH: '{{.ENV.BUILD_PATH | default "Builds/Linux64"}}'
+  TASK_UNITY_LICENSE: '{{.UNITY_LICENSE | default ""}}'
+  TASK_UNITY_USERNAME: '{{.UNITY_USERNAME | default ""}}'
+  TASK_UNITY_PASSWORD: '{{.UNITY_PASSWORD | default ""}}'
+  TASK_UNITY_SERIAL: '{{.UNITY_SERIAL | default ""}}'
+
+
+tasks:
+
+  # Activate Unity license
+  activate-license:
+    desc: Activate Unity license
+    cmds:
+      - cmd: echo "🔑 Activating Unity license..."
+        silent: true
+      - cmd: mkdir -p /root/.local/share/unity3d/Unity
+      # - cmd: cp "$UNITY_LICENSE" /root/.local/share/unity3d/Unity/Unity_lic.ulf
+      - cmd: ls -la /root/.local/share/unity3d/Unity
+      - |
+        unity-editor \
+          -quit \
+          -batchmode \
+          -nographics \
+          -logFile /dev/stdout \
+          -username "$UNITY_USERNAME" \
+          -password "$UNITY_PASSWORD" \
+          -serial "$UNITY_SERIAL"
+    env:
+      SHELL: /bin/bash
+    preconditions:
+      - sh: '[ -n "$UNITY_USERNAME" ]'
+        msg: "UNITY_USERNAME environment variable must be set"
+      - sh: '[ -n "$UNITY_PASSWORD" ]'
+        msg: "UNITY_PASSWORD environment variable must be set"
+      - sh: '[ -n "$UNITY_SERIAL" ]'
+        msg: "UNITY_SERIAL environment variable must be set"
+
+  # Return Unity license
+  return-license:
+    desc: Return Unity license
+    cmds:
+      - cmd: echo "🔐 Returning Unity license..."
+        silent: true
+      - |
+        unity-editor \
+          -quit \
+          -batchmode \
+          -nographics \
+          -logFile /dev/stdout \
+          -returnlicense || true
+  
+  # Build Unity project
+  # Build task for Windows
+  build:windows:
+    desc: Build Unity project for Windows
+    cmds:
+      - cmd: echo " Building Unity project for Windows..."
+        silent: true
+      - |
+        unity-editor \
+          -quit \
+          -batchmode \
+          -nographics \
+          -projectPath "{{.TASK_UNITY_PROJECT_PATH}}" \
+          -buildTarget StandaloneWindows64 \
+          -executeMethod BuildCommand.PerformBuild \
+          -logFile /dev/stdout
+
+  # Build task for Linux
+  build:linux:
+    desc: Build Unity project for Linux
+    cmds:
+      - cmd: echo " Building Unity project for Linux..."
+        silent: true
+      - |
+        unity-editor \
+          -quit \
+          -batchmode \
+          -nographics \
+          -accept-apiupdate \
+          -projectPath "{{.TASK_UNITY_PROJECT_PATH}}" \
+          -buildTarget StandaloneLinux64 \
+          -executeMethod BuildCommand.PerformBuild \
+          -logFile /dev/stdout
+    sources:
+      - "{{.TASK_UNITY_PROJECT_PATH}}/Assets/**/*"
+      - "{{.TASK_UNITY_PROJECT_PATH}}/ProjectSettings/**/*"
+    generates:
+      - "{{.TASK_BUILD_PATH}}/linux/**/*"
+
+  # Build task for Mac
+  build:mac:
+    desc: Build Unity project for Mac
+    cmds:
+      - cmd: echo " Building Unity project for Mac..."
+        silent: true
+      - |
+        unity-editor \
+          -quit \
+          -batchmode \
+          -nographics \
+          -projectPath "{{.TASK_UNITY_PROJECT_PATH}}" \
+          -buildTarget StandaloneOSX \
+          -executeMethod BuildCommand.PerformBuild \
+          -customBuildTarget StandaloneLinux64 \
+          -customBuildPath "build/unity/" \
+          -customBuildName "GameBuild" \
+          -logFile /dev/stdout
+
+  # Build task for WebGL
+  build:webGL:
+    desc: Build Unity project for WebGL
+    cmds:
+      - cmd: echo "🌐 Building Unity project for WebGL..."
+        silent: true
+      - |
+        unity-editor \
+          -quit \
+          -batchmode \
+          -nographics \
+          -projectPath "project/Unity/ABB" \
+          -buildTarget WebGL \
+          -executeMethod BuildCommand.PerformBuild \
+          -logFile /dev/stdout
+
+  # Build task for Android
+  build:android:
+    desc: Build Unity project for Android
+    cmds:
+      - cmd: echo "🤖 Building Unity project for Android..."
+      - cmd: ls
+        silent: true
+      - |
+        unity-editor \
+          -quit \
+          -batchmode \
+          -nographics \
+          -projectPath "{{.TASK_UNITY_PROJECT_PATH}}" \
+          -buildTarget Android \
+          -executeMethod BuildCommand.PerformBuild \
+          -customBuildTarget Android \
+          -customBuildPath "$(pwd)/build/unity/" \
+          -customBuildName "GameBuild" \
+          -logFile /dev/stdout
+
+  # Build task for iOS
+  build:ios:
+    desc: Build Unity project for iOS
+    cmds:
+      - cmd: echo "📱 Building for iOS..."
+        silent: true
+      - |
+        unity-editor \
+          -quit \
+          -batchmode \
+          -nographics \
+          -projectPath "{{.TASK_UNITY_PROJECT_PATH}}" \
+          -buildTarget iOS \
+          -executeMethod BuildCommand.PerformBuild \
+          -customBuildTarget iOS \
+          -customBuildPath "build/unity/" \
+          -customBuildName "GameBuild" \
+          -logFile /dev/stdout
+
+  # Build task for all platforms
+  build:all:
+    desc: Build Unity project for all platforms
+    cmds:
+      - task: activate-license
+      - task: build:windows
+      - task: build:linux
+      - task: build:mac
+      - task: build:webGL
+      - task: build:android
+      - task: build:ios
+      - task: return-license
+  
+  # Default build task
+  default:
+    desc: Build Unity project
+    cmds:
+      - task: build:{{.BUILD_TARGET | lower}}
+    vars:
+      BUILD_TARGET: '{{.BUILD_TARGET | default "linux"}}'
+
+  # Default clean task
+  clean:
+    desc: Clean build directory
+    cmds:
+      - cmd: echo "🧹 Cleaning build directory..."
+        silent: true
+      - rm -rf "{{.BUILD_PATH}}/*"
+
+  # Unity test task
+  test:
+    desc: Run Unity tests
+    cmds:
+      - cmd: echo "🧪 Running Unity tests..."
+        silent: true
+      - |
+        unity-editor \
+          -quit \
+          -batchmode \
+          -nographics \
+          -projectPath "{{.UNITY_PROJECT_PATH}}" \
+          -runTests \
+          -testPlatform PlayMode \
+          -testResults test-results.xml \
+          -logFile /dev/stdout

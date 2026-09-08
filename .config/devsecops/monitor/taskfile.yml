@@ -1,0 +1,172 @@
+# https://taskfile.dev
+version: "3"
+
+# Azure Container Apps Monitoring Tasks
+# This Taskfile orchestrates monitoring of the backend API running on Azure Container Apps.
+# It collects health status, metrics, logs, and active alerts from the Container App instance.
+#
+# Required environment variables (set in GitLab CI):
+#   - AZ_SUBSCRIPTION_ID: Azure subscription ID
+#   - AZURE_RESOURCE_GROUP: Azure resource group containing the Container App
+#   - CONTAINER_APP_NAME: Name of the Azure Container App
+#   - PRODUCTION_URL: URL of the deployed backend API
+
+vars:
+  # Define any variables here if needed
+  PROJECT_NAME: t-esp-800-project-71802-par_augmentedbotbattle
+  CI_PROJECT_DIR: .
+  TASK_FLAGS: '{{.TASK_FLAGS | default ""}}'
+  TASK_SEPARATOR: "\n====================================================================================================\n"
+  TASK_DEVSECOPS_ICON: '{{.TASK_DEVSECOPS_ICON | default "♾️"}}'
+
+
+tasks:
+  monitor:
+    desc: "Monitor production environment"
+    cmds:
+      - task: monitor:health-check
+      - task: monitor:metrics
+      - task: monitor:logs
+      - task: monitor:alerts
+      - task: monitor:generate-report
+
+  monitor:health-check:
+    desc: "Check application health endpoints"
+    cmds:
+      - echo "Checking application health..."
+      - |
+        # NOTE: keep status check and response-time check in the SAME shell
+        # block — Taskfile spawns a new shell per '- |' entry, so variables
+        # defined in a previous block would not be visible here.
+        #
+        # Backend health: hit /weatherforecast (default .NET template endpoint
+        # mapped in Program.cs, no auth, returns 200 directly). The root '/'
+        # is not always exposed depending on the deployed revision.
+        # Accept 2xx/3xx — a 3xx still means the server is responding.
+        BACKEND_URL="${PRODUCTION_URL}/weatherforecast"
+        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" ${BACKEND_URL})
+
+        if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 400 ]; then
+          echo "✅ Backend API is healthy (HTTP $RESPONSE)"
+        else
+          echo "❌ Backend API is unhealthy (HTTP $RESPONSE)"
+          exit 1
+        fi
+
+        # Response time on the same endpoint
+        RESPONSE_TIME=$(curl -s -w "%{time_total}" -o /dev/null ${BACKEND_URL})
+        echo "Response time: ${RESPONSE_TIME}s"
+
+        if (( $(echo "$RESPONSE_TIME > 2.0" | bc -l) )); then
+          echo "⚠️  WARNING: Response time exceeds 2 seconds"
+        fi
+
+  monitor:metrics:
+    desc: "Collect Azure metrics from Container App"
+    cmds:
+      - echo "Collecting Azure Monitor metrics from Container App..."
+      - mkdir -p reports/monitor
+      - |
+        # Container App resource path
+        CONTAINER_APP_RESOURCE="/subscriptions/${AZ_SUBSCRIPTION_ID}/resourceGroups/${AZURE_RESOURCE_GROUP}/providers/Microsoft.App/containerApps/${AZURE_CONTAINER_APP_NAME}"
+
+        # CPU usage as a percentage of allocated CPU. We use *Percentage rather
+        # than the raw UsageNanoCores/WorkingSetBytes counters so the downstream
+        # feedback analysis can meaningfully compare against an 80% threshold.
+        az monitor metrics list \
+          --resource "${CONTAINER_APP_RESOURCE}" \
+          --metric "CpuPercentage" \
+          --start-time $(date -u -d '1 hour ago' +%Y-%m-%dT%H:%M:%S) \
+          --end-time $(date -u +%Y-%m-%dT%H:%M:%S) \
+          --interval PT1M \
+          --output json > reports/monitor/cpu-metrics.json
+
+        # Memory usage as a percentage of allocated memory.
+        az monitor metrics list \
+          --resource "${CONTAINER_APP_RESOURCE}" \
+          --metric "MemoryPercentage" \
+          --start-time $(date -u -d '1 hour ago' +%Y-%m-%dT%H:%M:%S) \
+          --end-time $(date -u +%Y-%m-%dT%H:%M:%S) \
+          --interval PT1M \
+          --output json > reports/monitor/memory-metrics.json
+
+        # HTTP Requests (via Application Insights if configured)
+        az monitor metrics list \
+          --resource "${CONTAINER_APP_RESOURCE}" \
+          --metric "Requests" \
+          --start-time $(date -u -d '1 hour ago' +%Y-%m-%dT%H:%M:%S) \
+          --end-time $(date -u +%Y-%m-%dT%H:%M:%S) \
+          --interval PT5M \
+          --output json > reports/monitor/requests-metrics.json || echo "⚠️  Application Insights not configured"
+
+        echo "✅ Metrics collected"
+
+  monitor:logs:
+    desc: "Retrieve Container App logs"
+    cmds:
+      - echo "Retrieving Container App logs..."
+      - |
+        # Get logs from Container App (last 100 lines)
+        az containerapp logs show \
+          --name ${AZURE_CONTAINER_APP_NAME} \
+          --resource-group ${AZURE_RESOURCE_GROUP} \
+          --tail 100 \
+          --follow false \
+          > reports/monitor/container-logs.txt 2>&1 || echo "⚠️  Unable to retrieve logs (may require Log Analytics workspace)"
+
+        # Count errors
+        ERROR_COUNT=$(grep -ic "error" reports/monitor/container-logs.txt || echo "0")
+        echo "❌ Found ${ERROR_COUNT} errors in recent logs"
+
+        # Extract error messages
+        grep -i "error" reports/monitor/container-logs.txt > reports/monitor/error-logs.txt 2>/dev/null || true
+
+        if [ "$ERROR_COUNT" -gt 10 ]; then
+          echo "⚠️  WARNING: High error rate detected!"
+        fi
+
+  monitor:alerts:
+    desc: "Check Azure Monitor alerts"
+    cmds:
+      - echo "Checking active alerts..."
+      - |
+        az monitor metrics alert list \
+          --resource-group ${AZURE_RESOURCE_GROUP} \
+          --output table > reports/monitor/active-alerts.txt
+        
+        # Check if any alerts are firing
+        ALERT_COUNT=$(az monitor metrics alert list --resource-group ${AZURE_RESOURCE_GROUP} --query "length([?enabled==\`true\`])" -o tsv)
+        echo "Active alerts: ${ALERT_COUNT}"
+
+  monitor:generate-report:
+    desc: "Generate monitoring summary report"
+    cmds:
+      - echo "Generating monitoring report..."
+      - |
+        cat > reports/monitor/summary.md <<EOF
+        # Azure Container App Monitoring Report - $(date -u +%Y-%m-%d\ %H:%M:%S)
+
+        **Container App:** \`${AZURE_CONTAINER_APP_NAME}\`
+        **Resource Group:** \`${AZURE_RESOURCE_GROUP}\`
+
+        ## Application Health
+        - Backend API: ✅ Healthy
+        - Response Time: $(cat reports/monitor/response-time.txt 2>/dev/null || echo "N/A") seconds
+
+        ## Container Metrics (Last Hour)
+        - **CPU Usage (%):** $(cat reports/monitor/cpu-metrics.json | jq -r '.value[0].timeseries[0].data[-1].average // "N/A"' 2>/dev/null || echo "N/A")
+        - **Memory Usage (%):** $(cat reports/monitor/memory-metrics.json | jq -r '.value[0].timeseries[0].data[-1].average // "N/A"' 2>/dev/null || echo "N/A")
+        - **HTTP Requests:** $(cat reports/monitor/requests-metrics.json | jq -r '.value[0].timeseries[0].data[-1].total // "N/A"' 2>/dev/null || echo "N/A")
+
+        ## Error Summary
+        - Errors in logs: $(grep -ic "error" reports/monitor/container-logs.txt 2>/dev/null || echo "0")
+
+        ## Active Alerts
+        $(cat reports/monitor/active-alerts.txt 2>/dev/null || echo "No alerts configured")
+
+        ---
+        *Report generated automatically by DevSecOps pipeline*
+        EOF
+
+        cat reports/monitor/summary.md
+

@@ -1,0 +1,37 @@
+version: "3"
+
+vars:
+  TASK_LINT_BRANCH_ENABLED: '{{.TASK_LINT_BRANCH_ENABLED | default "true"}}'
+  PROJECT_ROOT: '../../../..'
+
+tasks:
+  default:
+    desc: Lint branch name according to conventions.
+    status:
+      - test "{{.TASK_LINT_BRANCH_ENABLED}}" = "false"
+    cmds:
+      - cmd: echo "🔄 Linting branch name..."
+        silent: true
+      - |
+          # 1) GitLab CI: MR pipeline -> source branch, branch pipeline -> commit branch
+
+          BRANCH_NAME="${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME:-${CI_COMMIT_BRANCH:-}}"
+
+          # 2) GitHub Actions: PR -> head ref, branch workflow -> ref name
+          if [ -z "$BRANCH_NAME" ]; then
+            BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
+          fi
+
+          # 3) Validation POSIX sh (pas de [[ =~ ]])
+          case "$BRANCH_NAME" in
+            feat/*|fix/*|hotfix/*|release/*|main|develop|staging)
+              echo "✅ Valid branch name: $BRANCH_NAME"
+              ;;
+            *)
+              echo "❌ Invalid branch name: $BRANCH_NAME"
+              echo "Accepted convention: feat/, fix/, hotfix/, release/ or main branches"
+              exit 1
+              ;;
+          esac
+      - cmd: echo "🎉 Branch name linted successfully!"
+        silent: true

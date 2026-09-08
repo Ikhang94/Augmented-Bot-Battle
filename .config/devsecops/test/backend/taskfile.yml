@@ -1,0 +1,99 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  # Define any variables here if needed
+  PROJECT_NAME: augmented-Bot-Battle
+  CI_PROJECT_DIR: .
+  TASK_FLAGS: '{{.TASK_FLAGS | default ""}}'
+  TASK_SEPARATOR: '{{.TASK_SEPARATOR | default (printf "\n%s\n" (repeat 100 "="))}}'
+  TASK_DEVSECOPS_ICON: '{{.TASK_DEVSECOPS_ICON | default "♾️"}}'
+  TASK_TEST_RESULT_DIR: 'reports/coverage'
+
+# Tasks
+tasks:
+  backend:
+    desc: Run backend C# unit tests
+    cmds:
+      - cmd: echo "🧪 Running backend tests..."
+        silent: true
+      - cmd: rm -rf project/Backend/*/obj project/Backend/*/bin
+        silent: true
+      - |
+        RESULTS_DIR="$(pwd)/{{.TASK_TEST_RESULT_DIR}}"
+        mkdir -p "$RESULTS_DIR"
+        dotnet test project/Backend/BackendEsp.Tests/BackendESP.Tests.csproj \
+          --logger "junit;LogFilePath=${RESULTS_DIR}/test-results.xml" \
+          --results-directory "${RESULTS_DIR}" \
+          /p:CollectCoverage=true \
+          /p:CoverletOutput="${RESULTS_DIR}/coverage" \
+          /p:CoverletOutputFormat=cobertura \
+          /p:Exclude="[BackendESP]Program" \
+          /p:Threshold=90 \
+          /p:ThresholdType=line \
+          /p:ThresholdStat=total
+      - cmd: echo "✅ Backend tests completed"
+        silent: true
+
+  backend:dev:
+    desc: Run backend C# unit tests in dev environment
+    cmds:
+      - cmd: echo "🧪 Running backend tests..."
+        silent: true
+      - cmd: rm -rf project/Backend/*/obj project/Backend/*/bin
+        silent: true
+      - |
+        RESULTS_DIR="$(pwd)/{{.TASK_TEST_RESULT_DIR}}"
+        mkdir -p "$RESULTS_DIR"
+        dotnet test project/Backend/BackendEsp.Tests/BackendESP.Tests.csproj \
+          --logger "junit;LogFilePath=${RESULTS_DIR}/test-results.xml" \
+          --results-directory "${RESULTS_DIR}" \
+          /p:CollectCoverage=true \
+          /p:CoverletOutput="${RESULTS_DIR}/coverage" \
+          /p:CoverletOutputFormat=cobertura \
+          /p:Exclude="[BackendESP]Program"
+      - cmd: echo "✅ Backend tests completed"
+        silent: true
+
+  integration:
+    desc: Run backend C# integration tests with coverage
+    cmds:
+      - cmd: echo "🧪 Running integration tests..."
+        silent: true
+      - cmd: rm -rf project/Backend/*/obj project/Backend/*/bin
+        silent: true
+      - |
+        RESULTS_DIR="$(pwd)/{{.TASK_TEST_RESULT_DIR}}"
+        mkdir -p "$RESULTS_DIR"
+        dotnet test \
+          project/Backend/BackendESP.IntegrationTests/BackendESP.IntegrationTests.csproj \
+          --logger "junit;LogFilePath=${RESULTS_DIR}/integration-test-results.xml" \
+          --results-directory "${RESULTS_DIR}" \
+          /p:CollectCoverage=true \
+          /p:CoverletOutput="${RESULTS_DIR}/integration-coverage" \
+          /p:CoverletOutputFormat=cobertura \
+          /p:Exclude="[BackendESP]Program"
+      - cmd: echo "✅ Integration tests completed"
+        silent: true
+
+  integration:dev:
+    desc: Run backend C# integration tests (dev — no threshold)
+    cmds:
+      - cmd: echo "🧪 Running integration tests..."
+        silent: true
+      - cmd: rm -rf project/Backend/*/obj project/Backend/*/bin
+        silent: true
+      - |
+        RESULTS_DIR="$(pwd)/{{.TASK_TEST_RESULT_DIR}}"
+        mkdir -p "$RESULTS_DIR"
+        dotnet test \
+          project/Backend/BackendESP.IntegrationTests/BackendESP.IntegrationTests.csproj \
+          --logger "junit;LogFilePath=${RESULTS_DIR}/integration-test-results.xml" \
+          --results-directory "${RESULTS_DIR}" \
+          /p:CollectCoverage=true \
+          /p:CoverletOutput="${RESULTS_DIR}/integration-coverage" \
+          /p:CoverletOutputFormat=cobertura \
+          /p:Exclude="[BackendESP]Program"
+      - cmd: echo "✅ Integration tests completed"
+        silent: true

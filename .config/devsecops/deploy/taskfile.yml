@@ -1,0 +1,194 @@
+# https://taskfile.dev
+version: "3"
+
+vars:
+  IMAGE_REPO: "augmentedbotbattle"
+
+tasks:
+  deploy:
+    desc: Deploy the project to Azure
+    cmds:
+      - cmd: echo "Starting deployment tasks..."
+      - cmd: |
+          REGISTRY_NAME="${AZURE_REGISTRY_NAME:-$AZURE_REGISTRY_USERNAME}"
+          REGISTRY_SERVER="${AZURE_REGISTRY:-${REGISTRY_NAME}.azurecr.io}"
+          IMAGE_REPO="{{.IMAGE_REPO}}"
+
+          echo "🔍 Using version tag from VERSION file..."
+          DEPLOY_TAG=$(cat VERSION)
+
+          FULL_IMAGE="${REGISTRY_SERVER}/${IMAGE_REPO}:${DEPLOY_TAG}"
+
+          echo "Registry  : ${REGISTRY_SERVER}"
+          echo "Image     : ${FULL_IMAGE}"
+          echo "ACA app   : ${AZURE_CONTAINER_APP_NAME}"
+          echo "RG        : ${AZURE_RESOURCE_GROUP}"
+
+          echo "Updating ACA with latest image..."
+          az containerapp update \
+            --name "${AZURE_CONTAINER_APP_NAME}" \
+            --resource-group "${AZURE_RESOURCE_GROUP}" \
+            --image "${FULL_IMAGE}"
+
+          echo "Deployment completed!"
+
+          echo "📋 Active revisions:"
+          az containerapp revision list \
+            --name "${AZURE_CONTAINER_APP_NAME}" \
+            --resource-group "${AZURE_RESOURCE_GROUP}" \
+            --output table
+  
+  deploy:prod:
+    desc: Deploy the project to Azure production
+    cmds:
+      - cmd: echo "Starting production deployment tasks..."
+        silent: true
+      - cmd: |
+          # ── Determine prod tag (latest version tag) ────────────────────
+          REGISTRY_NAME="${AZURE_REGISTRY_NAME:-$AZURE_REGISTRY_USERNAME}"
+          REGISTRY_SERVER="${AZURE_REGISTRY:-${REGISTRY_NAME}.azurecr.io}"
+          IMAGE_REPO="{{.IMAGE_REPO}}"
+
+          DEPLOY_TAG=$(az acr repository show-tags \
+            --name "$REGISTRY_NAME" \
+            --repository "$IMAGE_REPO" \
+            --orderby time_desc \
+            --output tsv | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | head -1)
+
+          if [ -z "$DEPLOY_TAG" ]; then
+            echo "ERROR: No version tags found in ACR. Aborting."
+            exit 1
+          fi
+
+          FULL_IMAGE="${REGISTRY_SERVER}/${IMAGE_REPO}:${DEPLOY_TAG}"
+
+          echo "Registry  : ${REGISTRY_SERVER}"
+          echo "Image     : ${FULL_IMAGE}"
+          echo "ACA app   : ${AZURE_CONTAINER_APP_NAME_PROD:-$AZURE_CONTAINER_APP_NAME}"
+          echo "RG        : ${AZURE_RESOURCE_GROUP}"
+
+          # ── Verify image exists in ACR ────────────────────────────────────
+          echo "Verifying image tag ${DEPLOY_TAG} exists in ACR..."
+          az acr repository show-tags \
+            --name "$REGISTRY_NAME" \
+            --repository "$IMAGE_REPO" \
+            --output tsv \
+            | grep -q "^${DEPLOY_TAG}$" \
+            || { echo "Tag ${DEPLOY_TAG} not found in ACR. Aborting."; exit 1; }
+          echo "SUCCESS: Image found in ACR."
+
+          # ── Deploy to Azure Container App ─────────────────────────────────
+          ACA_NAME="${AZURE_CONTAINER_APP_NAME_PROD:-$AZURE_CONTAINER_APP_NAME}"
+          echo "Updating production ACA with image ${FULL_IMAGE}..."
+          az containerapp update \
+            --name "${ACA_NAME}" \
+            --resource-group "${AZURE_RESOURCE_GROUP}" \
+            --image "${FULL_IMAGE}"
+
+          echo "Production deployment complete!"
+
+          # ── Show active revisions ─────────────────────────────────────────
+          echo "Active revisions:"
+          az containerapp revision list \
+            --name "${ACA_NAME}" \
+            --resource-group "${AZURE_RESOURCE_GROUP}" \
+            --output table
+
+  deploy:dev:
+    desc: Deploy to dev environment (OVH VPS via SSH) using VERSION-dev tag
+    cmds:
+      - cmd: echo "Starting deployment to OVH VPS (dev environment)..."
+        silent: true
+      - cmd: |
+          # Read version from VERSION file
+          if [ ! -f VERSION ]; then
+            echo "ERROR: VERSION file not found"
+            exit 1
+          fi
+          CURRENT_VERSION=$(cat VERSION)
+          echo "VERSION: ${CURRENT_VERSION}"
+
+          # Setup SSH
+          mkdir -p ~/.ssh
+          # Handle both base64-encoded and raw key formats
+          if echo "$SSH_PRIVATE_KEY" | grep -q "^[A-Za-z0-9+/=]*$"; then
+            # Base64-encoded key (single line)
+            echo "$SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/deploy_key 2>/dev/null
+            if [ ! -s ~/.ssh/deploy_key ] || ! grep -q "BEGIN" ~/.ssh/deploy_key; then
+              # Fallback: try as raw key
+              echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+            fi
+          else
+            # Raw key format (may have newlines as literal \n)
+            printf "%b" "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          fi
+          chmod 600 ~/.ssh/deploy_key
+          # Verify key format
+          if ! grep -q "BEGIN.*PRIVATE KEY" ~/.ssh/deploy_key; then
+            echo "ERROR: SSH key format invalid"
+            cat ~/.ssh/deploy_key | head -c 100
+            exit 1
+          fi
+          ssh-keyscan -H "$DEV_IP_ADDRESS" >> ~/.ssh/known_hosts 2>/dev/null || true
+
+          # Deploy variables
+          DEPLOY_USER="ubuntu"
+          DEPLOY_HOST="$DEV_IP_ADDRESS"
+          DEPLOY_PATH="/home/ubuntu/app/augmented-bottle"
+          REGISTRY_NAME="${AZURE_REGISTRY_NAME:-$AZURE_REGISTRY_USERNAME}"
+          REGISTRY_SERVER="${AZURE_REGISTRY:-${REGISTRY_NAME}.azurecr.io}"
+          IMAGE_REPO="{{.IMAGE_REPO}}"
+          IMAGE_TAG="${CURRENT_VERSION}-dev"
+          FULL_IMAGE="${REGISTRY_SERVER}/${IMAGE_REPO}:${IMAGE_TAG}"
+
+          echo "Deployment Configuration:"
+          echo "   Host        : ${DEPLOY_USER}@${DEPLOY_HOST}"
+          echo "   Path        : ${DEPLOY_PATH}"
+          echo "   Image       : ${FULL_IMAGE}"
+          echo "   Services    : backend"
+
+          # Execute deployment via SSH (export environment variables)
+          ssh -i ~/.ssh/deploy_key "${DEPLOY_USER}@${DEPLOY_HOST}" bash << SSHEOF
+          set -e
+
+          # Set environment variables from CI
+          export POSTGRES_PASSWORD="$POSTGRES_PASSWORD"
+          export JWT_SECRET="$JWT_SECRET"
+          export AZURE_REGISTRY_USERNAME="$AZURE_REGISTRY_USERNAME"
+          export AZURE_REGISTRY_PASSWORD="$AZURE_REGISTRY_PASSWORD"
+          export REGISTRY_SERVER="$REGISTRY_SERVER"
+          export FULL_IMAGE="$FULL_IMAGE"
+
+          echo "Logging into ACR..."
+          docker login -u "$AZURE_REGISTRY_USERNAME" -p "$AZURE_REGISTRY_PASSWORD" "$REGISTRY_SERVER" || {
+            echo "WARNING: Docker login completed with warnings"
+          }
+
+          echo "Navigating to deployment directory..."
+          pwd
+          echo "Target path: $DEPLOY_PATH"
+          ls -la "$DEPLOY_PATH" || echo "ERROR: Path does not exist!"
+          cd "$DEPLOY_PATH" || { echo "ERROR: Cannot cd to $DEPLOY_PATH"; exit 1; }
+          echo "Current directory after cd:"
+          pwd
+          echo "Files in current directory:"
+          ls -la
+
+          echo "Pulling image: $FULL_IMAGE..."
+          docker compose pull backend || echo "Pull completed with warnings"
+
+          echo "Stopping services..."
+          docker compose down -v || echo "Docker compose down completed with warnings"
+
+          echo "Restarting services..."
+          docker compose up -d backend
+
+          echo "Services restarted"
+
+          echo "Container status:"
+          docker compose ps
+
+          SSHEOF
+
+          echo "Dev deployment completed!"
+          rm -f ~/.ssh/deploy_key

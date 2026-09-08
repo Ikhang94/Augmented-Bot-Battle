@@ -1,0 +1,11 @@
+# ===== JOB DEFINITIONS =====
+# Global before_script to install Taskfile CLI
+default:
+  image: alpine:3.19
+
+
+before_script:
+  - sudo apt-get update || true
+  - sudo apt-get install -y curl bash docker-cli
+  - curl -sL https://taskfile.dev/install.sh | bash -s -- -d -b /usr/local/bin
+  - task --version

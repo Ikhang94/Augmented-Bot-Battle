@@ -1,0 +1,56 @@
+# https://taskfile.dev
+version: "3"
+
+tasks:
+  operate:
+    desc: "Post-deployment verification"
+    cmds:
+      - task: operate:verify
+      - task: operate:smoke-test
+
+  operate:verify:
+    desc: "Verify the deployment is live"
+    cmds:
+      - |
+        echo "Verifying deployment at ${PRODUCTION_URL}..."
+        # Hit /weatherforecast (default .NET template endpoint, no auth,
+        # always returns 200 on the current revision). The root '/' is not
+        # reliably mapped across deployments. Accept 2xx/3xx as "alive".
+        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "${PRODUCTION_URL}/weatherforecast")
+        if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 400 ]; then
+          echo "Deployment verified (HTTP $RESPONSE)"
+        else
+          echo "Deployment check failed (HTTP $RESPONSE)"
+          exit 1
+        fi
+
+  operate:smoke-test:
+    desc: "Run smoke tests on main API endpoints"
+    cmds:
+      - |
+        echo "Running smoke tests..."
+        FAILED=0
+
+        # An endpoint is considered alive on any 2xx/3xx response.
+        # 3xx happens because UseHttpsRedirection on ACA returns 301 on every
+        # path (TLS terminated at the gateway → app sees http). 4xx/5xx still fails.
+        check() {
+          local METHOD=$1
+          local URL=$2
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X "$METHOD" "${PRODUCTION_URL}${URL}")
+          if [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 400 ]; then
+            echo "  PASS $METHOD $URL -> $RESPONSE"
+          else
+            echo "  FAIL $METHOD $URL -> $RESPONSE"
+            FAILED=1
+          fi
+        }
+
+        check GET /api/users/getall
+        check GET /api/robots
+
+        if [ "$FAILED" = "1" ]; then
+          echo "Smoke tests failed"
+          exit 1
+        fi
+        echo "All smoke tests passed"

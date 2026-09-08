@@ -1,0 +1,118 @@
+
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  TASK_SONARQUBE_ENABLED: '{{.TASK_SONARQUBE_ENABLED | default "true"}}'
+  TASK_CI_COMMIT_BRANCH: '{{.ENV.CI_COMMIT_BRANCH | default ""}}'
+  TASK_BRANCH: '{{ or .ENV.CI_COMMIT_BRANCH .ENV.CI_COMMIT_REF_NAME }}'
+  TASK_CI_MERGE_REQUEST_IID: '{{.ENV.CI_MERGE_REQUEST_IID | default ""}}'
+  SONAR_TEST_PROJECT: 'project/Backend/BackendEsp.Tests/BackendESP.Tests.csproj'
+  SONAR_SOLUTION: 'project/Backend/BackendESP/BackendESP.sln'
+  SONAR_COVERAGE_DIR: 'reports/coverage'
+
+
+tasks:
+
+  preview:
+    desc: Preview SonarQube .NET scan parameters
+    cmds:
+      - |
+        echo "SonarQube .NET Scan Parameters:"
+        echo "  Project Key: $SONAR_PROJECT_KEY"
+        echo "  Host URL: $SONAR_HOST_URL"
+        echo "  Solution: {{.SONAR_SOLUTION}}"
+        echo "  Test project: {{.SONAR_TEST_PROJECT}}"
+        echo "  Coverage path: {{.SONAR_COVERAGE_DIR}}/**/coverage.opencover.xml"
+        echo "  Token: ********"
+    silent: true
+
+  install-tools:
+    desc: Install .NET SonarScanner
+    cmds:
+      - dotnet tool install --global dotnet-sonarscanner || dotnet tool update --global dotnet-sonarscanner
+    silent: true
+  
+  scan:
+    desc: Run SonarQube analysis for .NET
+    cmds:
+      - mkdir -p {{.SONAR_COVERAGE_DIR}}
+      - |
+        rm -rf reports/coverage
+        mkdir -p reports/coverage
+        export PATH="$PATH:/root/.dotnet/tools:$HOME/.dotnet/tools"
+        echo "Checking SonarQube auth..."
+        test -n "$SONAR_TOKEN" || (echo "SONAR_TOKEN is empty" && exit 1)
+        curl -s -H "Authorization: Bearer $SONAR_TOKEN" "$SONAR_HOST_URL/api/authentication/validate"
+        dotnet sonarscanner begin \
+          /k:"$SONAR_PROJECT_KEY" \
+          /d:sonar.host.url="$SONAR_HOST_URL" \
+          /d:sonar.login="$SONAR_TOKEN" \
+          /d:sonar.projectBaseDir="$(pwd)/project/Backend" \
+          /d:sonar.cs.opencover.reportsPaths="reports/coverage/**/coverage.opencover.xml"  \
+          /d:sonar.coverage.exclusions="**/Program.cs" \
+          /d:sonar.sourceEncoding="UTF-8"
+        rm -rf project/Backend/*/obj project/Backend/*/bin
+        dotnet restore {{.SONAR_SOLUTION}}
+        dotnet build {{.SONAR_SOLUTION}} --no-restore
+        dotnet test {{.SONAR_TEST_PROJECT}} \
+          --no-build \
+          --results-directory reports/coverage \
+          --collect:"XPlat Code Coverage;Format=opencover"
+
+        echo "=== Coverage files ==="
+        find reports -type f | sort
+
+        echo "=== Moving coverage file to expected location ==="
+        if [ -f "$(find reports/coverage -name 'coverage.opencover.xml' -type f | head -1)" ]; then
+          cp "$(find reports/coverage -name 'coverage.opencover.xml' -type f | head -1)" reports/coverage/coverage.opencover.xml
+          echo "Coverage file moved"
+        fi
+
+        echo "=== coverage.opencover.xml exists? ==="
+        test -f reports/coverage/coverage.opencover.xml && echo "YES" || echo "NO"
+
+        echo "=== coverage preview ==="
+        head -n 20 reports/coverage/coverage.opencover.xml || true
+
+        echo "=== Removing sonar-project.properties if present ==="
+        rm -f sonar-project.properties
+
+        dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
+    silent: true
+
+  report:
+    desc: Generate SonarQube report
+    cmds:
+    - |
+        echo "Generating Community Edition issues export..."
+        BRANCH="{{ .TASK_BRANCH }}"
+        PAGE_SIZE=500
+        PAGE=1
+        command -v jq >/dev/null 2>&1 || { (command -v apk >/dev/null 2>&1 && apk add --no-cache jq) || (apt-get update && apt-get install -y jq); }
+        mkdir -p reports
+        : > reports/sonar-issues.raw.jsonl
+        while :; do
+          # Construire l'URL de base sans le paramètre branch
+          BASE="$SONAR_HOST_URL/api/issues/search?componentKeys=$SONAR_PROJECT_KEY&types=VULNERABILITY,BUG,CODE_SMELL&ps=${PAGE_SIZE}&p=${PAGE}"
+          URL="${BASE}"
+          # Ajouter branch seulement si non vide ET si pas Community Edition
+          # Note: Community Edition ne supporte pas les branches
+          # [ -n "$BRANCH" ] && URL="${BASE}&branch=${BRANCH}"
+          echo "Fetch ${URL}"
+          RESP="$(curl -fSs -H "Authorization: Bearer $SONAR_TOKEN" "${URL}")" || { echo "Fetch failed"; break; }
+          COUNT="$(echo "${RESP}" | jq '.issues | length')" || COUNT=0
+          echo "${RESP}" | jq -c '.issues[]' >> reports/sonar-issues.raw.jsonl
+          if [ "${COUNT}" -lt "${PAGE_SIZE}" ]; then break; fi
+          PAGE=$((PAGE+1))
+        done
+        # Transform issues into a minimal JSON array
+        jq -s '[ .[] | {severity, type, rule, message, file: (.component | split(":") | .[-1]), line: (.line // null), status} ]' reports/sonar-issues.raw.jsonl > reports/sonar-issues.min.json
+        # Résumé par sévérité
+        jq 'group_by(.severity) | map({severity: .[0].severity, count: length})' reports/sonar-issues.min.json > reports/sonar-issues.summary.json
+    silent: true
+
+
+  
+  

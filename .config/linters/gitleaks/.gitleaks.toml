@@ -1,0 +1,33 @@
+# This file is used as configuration file for gitleaks linter
+title = "gitleaks config"
+
+[extend]
+# useDefault will extend the base configuration with the default gitleaks config:
+# https://github.com/zricethezav/gitleaks/blob/master/config/gitleaks.toml
+useDefault = true
+
+[allowlist]
+    description = "Allowlisted files"
+    paths = [
+    '''.automation/test''',
+    '''megalinter-reports''',
+    '''.github/linters''',
+    '''node_modules''',
+    '''.mypy_cache''',
+    '''(.*?)gitleaks\.toml$''',
+    '''(?i)(.*?)(png|jpeg|jpg|gif|doc|docx|pdf|bin|xls|xlsx|pyc|zip)$''',
+    '''(go.mod|go.sum)$''',
+    '''.config/devops''',
+    '''.config/devsecops''',
+    ],
+    commits = [
+        "81eaed943a77c465fa885b2046af6d360d08b077",
+        "6252cd02598d6e7831d3b7d9b516ea366d50f826",
+        "ec1213eea16a5ac534dbfc4a114e48b60f1069ec",
+        # curl -u $SONAR_TOKEN: false positive (variable, not hardcoded secret)
+        "15397d8bd6abcbebfe8c6a6e349b703eb79e23e1",
+        # Historical JWT_SECRET leak in project/Backend/BackendESP/env (squashed
+        # commit on main). The leaked secret is rotated; this allowlists the
+        # historical finding so CI stops flagging the unchanged commit.
+        "dc5793d94af48138f82440785ff508cbad17bfb6"
+    ]
